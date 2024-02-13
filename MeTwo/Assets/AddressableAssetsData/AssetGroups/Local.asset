@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Local
+  m_EditorClassIdentifier: 
+  m_GroupName: Local
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3845657c4febd8e4d8c8523b5c1d6b51
+  m_SerializeEntries:
+  - m_GUID: 655f874f16a97db4795f06ec4e974bed
+    m_Address: Assets/3a5b9ff06427f3f7524c0ce4cf785f2ece19b9f0f4d6baabb50d798b9f8aaadd.gif
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BGM
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff697d3070687ce4583faa0561a145a2
+    m_Address: PlayerLandSFX
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72f526a6a9890f643a88e85a61c86c8a
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85016e0f2b01da248b9663dd49a161b0
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_02.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 186de84b3207156479abe98f4958fed0
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a91fcd19acf1e54bba0945d9f390849
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_04.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14e8a8d2158bec840b56c54f5266e692
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_05.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29841e7d5bbfb5b419c9ad16ca8bc4c1
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_06.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd1af302b8902684d9381de1f2d3a5af
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_07.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67c8b33e424ccdc4486edf538ab91c5a
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_08.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 274649b0e221539409070ebf6c18918b
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_09.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3194b8bbc96ef84fab1f98f4b7dae3e
+    m_Address: Assets/TempAssets/Sfx/Player_Footstep_10.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4042db6638969ef4a84401a39f48f9a2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 26a92337fc5f67348afbaadebbfbef9c, type: 2}
+    - {fileID: 11400000, guid: 9508dc2c05e156f419dca204a40514d3, type: 2}

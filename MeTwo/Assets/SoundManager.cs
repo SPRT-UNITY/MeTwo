@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 public class SoundManager : MonoBehaviour
 {
@@ -40,8 +43,8 @@ public class SoundManager : MonoBehaviour
     List<(string, AudioClip)> sfxList;
     int sfxEraseIndex = 0;
 
-    List<string> bgmNameCache = new List<string>();
-    List<string> sfxNameCache = new List<string>();
+    Dictionary<string, IResourceLocation> bgmNameCache = new Dictionary<string, IResourceLocation>();
+    Dictionary<string, IResourceLocation> sfxNameCache = new Dictionary<string, IResourceLocation>();
 
     string BGM_PATH;
     string SFX_PATH;
@@ -175,14 +178,14 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(string name)
     {
-        if (!bgmNameCache.Contains(name))
+        if (!bgmNameCache.ContainsKey(name))
         {
             Debug.LogError("BGM name not found!");
             return;
         }
 
+        bgmClip = Addressables.LoadAssetAsync<AudioClip>(bgmNameCache[name]).WaitForCompletion();
         bgmSource?.Stop();
-        bgmClip = Resources.Load<AudioClip>(BGM_PATH + name);
         bgmSource.clip = bgmClip;
         bgmSource.Play();
     }
@@ -202,7 +205,7 @@ public class SoundManager : MonoBehaviour
     #region SFX
     public void PlaySFX(string name, Vector3 position)
     {
-        if (!sfxNameCache.Contains(name))
+        if (!sfxNameCache.ContainsKey(name))
         {
             Debug.LogError("SFX name not found!");
             return;
@@ -218,7 +221,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(string name) 
     {
-        if (!sfxNameCache.Contains(name))
+        if (!sfxNameCache.ContainsKey(name))
         {
             Debug.LogError("SFX name not found!");
             return;
@@ -243,7 +246,7 @@ public class SoundManager : MonoBehaviour
             sfxList.RemoveAt(sfxEraseIndex++);
             sfxEraseIndex %= MAX_SFX_CACHE_SIZE;
         }
-        sfxList.Add((name, Resources.Load<AudioClip>(SFX_PATH + name)));
+        sfxList.Add((name, Addressables.LoadAssetAsync<AudioClip>(sfxNameCache[name]).WaitForCompletion()));
     }
 
     AudioClip GetAudioClipFromSFXList(string name)
@@ -268,29 +271,31 @@ public class SoundManager : MonoBehaviour
 
     void CachingNames()
     {
-        foreach (string s in AssetDatabase.GetAssetPathsFromAssetBundle("bgm"))
+        var bgmNameLoader = Addressables.LoadResourceLocationsAsync("BGM");
+        bgmNameLoader.Completed += (handle) =>
         {
-            if (BGM_PATH == null) 
+            var locations = handle.Result;
+            foreach (var location in locations) 
             {
-                BGM_PATH = s.Substring(0, s.LastIndexOf("/"));
-                Debug.Log(BGM_PATH);
+                string path = location.ToString();
+                string name = path.Substring(path.LastIndexOf("/") + 1, path.LastIndexOf(".") - (path.LastIndexOf("/") + 1));
+                bgmNameCache.Add(name, location);
             }
-            string name = s.Substring(s.LastIndexOf("/") + 1, s.LastIndexOf(".") - (s.LastIndexOf("/") + 1));
-            bgmNameCache.Add(name);
-            Debug.Log("Add BGM : " + name);
-        }
+        };
+        bgmNameLoader.WaitForCompletion();
 
-        foreach (string s in AssetDatabase.GetAssetPathsFromAssetBundle("sfx"))
+        var sfxNameLoader = Addressables.LoadResourceLocationsAsync("SFX");
+        sfxNameLoader.Completed += (handle) =>
         {
-            if (SFX_PATH == null)
+            var locations = handle.Result;
+            foreach (var location in locations)
             {
-                SFX_PATH = s.Substring(0, s.LastIndexOf("/"));
-                Debug.Log(SFX_PATH);
+                string path = location.ToString();
+                string name = path.Substring(path.LastIndexOf("/") + 1, path.LastIndexOf(".") - (path.LastIndexOf("/") + 1));
+                sfxNameCache.Add(name, location);
             }
-            string name = s.Substring(s.LastIndexOf("/") + 1, s.LastIndexOf(".") - (s.LastIndexOf("/") + 1));
-            sfxNameCache.Add(name);
-            Debug.Log("Add SFX : " + name);
-        }
+        };
+        sfxNameLoader.WaitForCompletion();
     }
 
     public void ClearSFXList()
