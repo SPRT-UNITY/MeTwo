@@ -7,8 +7,7 @@ public class TempManagers : MonoBehaviour
     static TempManagers s_instance;
     static TempManagers Instance { get { Init(); return s_instance; } }
 
-    UIManager _ui = new UIManager();
-
+    UIManager _ui;
     public static UIManager UI { get { return Instance._ui; } }
 
     // 게임이 로드될 때 자동으로 실행
@@ -27,10 +26,25 @@ public class TempManagers : MonoBehaviour
             if (go == null)
             {
                 go = new GameObject { name = "@Managers" };
-                go.AddComponent<TempManagers>();
+                s_instance = go.AddComponent<TempManagers>();
+                DontDestroyOnLoad(go);
             }
-            DontDestroyOnLoad(go);
-            s_instance = go.GetComponent<TempManagers>();
+            else
+            {
+                s_instance = go.GetComponent<TempManagers>();
+            }
+
+            // UIManager 컴포넌트 추가 및 참조 설정
+            if (go.GetComponent<UIManager>() == null)
+            {
+                s_instance._ui = go.AddComponent<UIManager>();
+            }
+            else
+            {
+                s_instance._ui = go.GetComponent<UIManager>();
+            }
+
+            s_instance._ui.ShowSceneUI<UI_TitleMenu>();
         }
     }
 }

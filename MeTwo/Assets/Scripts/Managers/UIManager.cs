@@ -63,8 +63,9 @@ public class UIManager : MonoBehaviour
         }
 
         GameObject instantiatedGo = Instantiate(go, new Vector3(0, 0, 0), Quaternion.identity, Root.transform);
+        instantiatedGo.name = instantiatedGo.name.Replace("(Clone)", "").Trim();
 
-        T sceneUI = GetOrAddComponent<T>(go);
+        T sceneUI = GetOrAddComponent<T>(instantiatedGo);
 
         return sceneUI;
     }
@@ -83,8 +84,9 @@ public class UIManager : MonoBehaviour
         }
 
         GameObject instantiatedGo = Instantiate(go, new Vector3(0, 0, 0), Quaternion.identity, Root.transform);
+        instantiatedGo.name = instantiatedGo.name.Replace("(Clone)", "").Trim();
 
-        T popup = GetOrAddComponent<T>(go);
+        T popup = GetOrAddComponent<T>(instantiatedGo);
         _popupStack.Push(popup);
 
         return popup;

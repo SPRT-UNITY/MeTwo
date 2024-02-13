@@ -5,9 +5,16 @@ using System;
 using TMPro;
 using UnityEngine.Diagnostics;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UI_Base : MonoBehaviour
 {
+    public enum UIEvent
+    {
+        Click,
+        Drag,
+    }
+
     // Type을 Key로 사용하여, 내부 요소를 이름으로 갖는 오브젝트들을 관리.
     // ex) Key:TextMeshProUGUIs(type), Value[]:{PointText(Object), ScoreText(Object)}
     // enum TextMeshProUGUIs
@@ -49,6 +56,22 @@ public class UI_Base : MonoBehaviour
     protected TextMeshProUGUI GetTextMeshProUGUI(int idx) { return Get<TextMeshProUGUI>(idx); }
     protected Button GetButton(int idx) { return Get<Button>(idx); }
     protected Image GetImage(int idx) { return Get<Image>(idx); }
+
+    public static void AddUIEvent(GameObject go, Action<PointerEventData> action, UIEvent type = UIEvent.Click)
+    {
+        UI_EventHandler evt = TempManagers.UI.GetOrAddComponent<UI_EventHandler>(go);
+        switch (type)
+        {
+            case UIEvent.Click:
+                evt.OnClickHandler -= action;
+                evt.OnClickHandler += action;
+                break;
+            case UIEvent.Drag:
+                evt.OnDragHandler -= action;
+                evt.OnDragHandler += action;
+                break;
+        }
+    }
 
 
 

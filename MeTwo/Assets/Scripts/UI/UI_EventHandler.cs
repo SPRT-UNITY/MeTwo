@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IDragHandler
 {
-    public Action<PointerEventData> OnClickHandler = null; // 아래에서 구독 신청한 애들한테 알려주기
+    public Action<PointerEventData> OnClickHandler = null;
     public Action<PointerEventData> OnDragHandler = null;
 
     public void OnPointerClick(PointerEventData eventData)

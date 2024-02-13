@@ -1010,7 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528920074}
   m_Layer: 5
-  m_Name: AlertBox1Btn
+  m_Name: AlertBox2Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2866,8 +2866,8 @@ RectTransform:
   - {fileID: 1191889872}
   - {fileID: 330117711}
   - {fileID: 372984648}
-  - {fileID: 528920074}
   - {fileID: 2145595606}
+  - {fileID: 528920074}
   - {fileID: 1352239102}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -6701,7 +6701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2145595606}
   m_Layer: 5
-  m_Name: AlertBox2Btn
+  m_Name: AlertBox1Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
