@@ -118,5 +118,8 @@ public class UIManager : MonoBehaviour
         while (_popupStack.Count > 0)
             ClosePopupUI();
     }
-
+    public void StackClear() // 씬 전환시 스택 초기화
+    {
+        _popupStack.Clear();
+    }
 }

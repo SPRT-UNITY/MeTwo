@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI_SettingsOnTitle : UI_Popup
+public class UI_SettingsOnGame : UI_Popup
 {
     enum Buttons
     {
         CloseBtn,
-        ResetDataBtn,
     }
     enum Sliders
     {
@@ -29,7 +27,6 @@ public class UI_SettingsOnTitle : UI_Popup
         Bind<Slider>(typeof(Sliders));
 
         GetButton((int)Buttons.CloseBtn).onClick.AddListener(OnClickClose); // 닫기 버튼 이벤트
-        GetButton((int)Buttons.ResetDataBtn).onClick.AddListener(OnClickResetData); // 데이터 삭제 버튼 이벤트
 
         Slider bgmSlider = GetSlider((int)Sliders.BGMSlider);
         Slider sfxSlider = GetSlider((int)Sliders.SFXSlider);
@@ -46,10 +43,6 @@ public class UI_SettingsOnTitle : UI_Popup
     void OnClickClose()
     {
         TempManagers.UI.ClosePopupUI();
-    }
-    void OnClickResetData()
-    {
-        TempManagers.UI.ShowPopupUI<UI_Alert2Btn>();
     }
     void OnBGMSliderChanged(float value)
     {

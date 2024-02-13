@@ -17,7 +17,7 @@ public class UI_TitleMenu : UI_Scene
         GameExitBtn,
     }
 
-    private void Start()
+    void Start()
     {
         Init();
     }

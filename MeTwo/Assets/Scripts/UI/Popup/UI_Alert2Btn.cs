@@ -11,8 +11,7 @@ public class UI_Alert2Btn : UI_Popup
         CancelBtn,
         OkBtn,
     }
-
-    private void Start()
+    void Start()
     {
         Init();
     }
@@ -23,18 +22,18 @@ public class UI_Alert2Btn : UI_Popup
         Bind<Button>(typeof(Buttons));
 
         GetButton((int)Buttons.CloseBtn).onClick.AddListener(OnClickClose); // 닫기 버튼 이벤트
-        GetButton((int)Buttons.CancelBtn).onClick.AddListener(OnClickCancel); // 데이터 삭제 버튼 이벤트
-        GetButton((int)Buttons.OkBtn).onClick.AddListener(OnClickOk); // 데이터 삭제 버튼 이벤트
+        GetButton((int)Buttons.CancelBtn).onClick.AddListener(OnClickCancel); // 취소(=닫기) 버튼 이벤트
+        GetButton((int)Buttons.OkBtn).onClick.AddListener(OnClickOk); // 확인 시 이벤트
     }
-    public void OnClickClose()
+    void OnClickClose()
     {
         TempManagers.UI.ClosePopupUI();
     }
-    public void OnClickCancel()
+    void OnClickCancel()
     {
         TempManagers.UI.ClosePopupUI();
     }
-    public void OnClickOk()
+    void OnClickOk()
     {
         // UI Manager에서 현재 팝업창에서 실행될 메서드를 전달받아 실행하도록 수정
         // 임시 : 저장된 데이터 삭제

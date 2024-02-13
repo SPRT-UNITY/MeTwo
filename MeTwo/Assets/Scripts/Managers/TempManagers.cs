@@ -10,6 +10,9 @@ public class TempManagers : MonoBehaviour
     UIManager _ui;
     public static UIManager UI { get { return Instance._ui; } }
 
+    SceneLoader _sl;
+    public static SceneLoader SL { get { return Instance._sl; } }
+
     // 게임이 로드될 때 자동으로 실행
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod() 
@@ -17,11 +20,11 @@ public class TempManagers : MonoBehaviour
         Init();
     }
 
-    // @Managers 오브젝트를 찾거나 만들어 Managers 컴포넌트를 Add
     static void Init()
     {
         if (s_instance == null)
         {
+            // @Managers 오브젝트를 찾거나 만들어 TempManagers 컴포넌트를 Add
             GameObject go = GameObject.Find("@Managers");
             if (go == null)
             {
@@ -44,7 +47,37 @@ public class TempManagers : MonoBehaviour
                 s_instance._ui = go.GetComponent<UIManager>();
             }
 
-            s_instance._ui.ShowSceneUI<UI_TitleMenu>();
+            // SceneLoader 컴포넌트 추가 및 참조 설정
+            if (go.GetComponent<SceneLoader>() == null)
+            {
+                s_instance._sl = go.AddComponent<SceneLoader>();
+            }
+            else
+            {
+                s_instance._sl = go.GetComponent<SceneLoader>();
+            }
+
         }
     }
+    // 상황에 따른 '마우스 가운데잠금 및 보이기', '타임스케일' 조정
+    // 일단 적당한 Manager가 없어 여기에 넣음. SceneLoader와 UI_Main, UI_Pause에서 사용.
+    // Player측에서 조작했을 것으로 예상되기에 일단 주석처리
+    //static public void SetStateTitle()
+    //{
+    //    Cursor.lockState = CursorLockMode.None;
+    //    Cursor.visible = true;
+    //    Time.timeScale = 1f;
+    //}
+    //static public void SetStatePause()
+    //{
+    //    Cursor.lockState = CursorLockMode.None;
+    //    Cursor.visible = true;
+    //    Time.timeScale = 0f;
+    //}
+    //static public void SetStatePlaying()
+    //{
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //    Cursor.visible = false;
+    //    Time.timeScale = 1f;
+    //}
 }
