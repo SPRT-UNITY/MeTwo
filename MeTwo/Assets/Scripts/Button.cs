@@ -1,37 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public GameObject Door;
-    public bool doorIsOpening = true;
-    public bool btnPushed;
     private Animator btnAnim;
-    private Animator doorAnim;
+    public bool btnPushed;
+    public bool timeLimit;
+    public float timer;
+    private float time;
 
-    private void Start() 
+    private void Start()
     {
+        time = timer;
         btnAnim = transform.GetComponent<Animator>();
-        doorAnim = Door.GetComponent<Animator>();
     }
-
 
     void Update()
     {
         if(btnPushed)
         {
             btnAnim.SetBool("IsPush", true);
-            if (doorIsOpening)
+        }
+        else
+        {
+            btnAnim.SetBool("IsPush", false);
+        }
+        if(timeLimit && btnPushed)
+        {
+            timer -= Time.deltaTime;
+            if(timer < 0) 
             {
-                doorAnim.SetBool("IsOpen", true);
+                btnPushed = false;
+                timer = time;
+                btnAnim.SetBool("IsPush", false);
             }
         }
-        
     }
 
-    public void PushButton() 
+    public void PushButton()
     {
         btnPushed = !btnPushed;
     }
