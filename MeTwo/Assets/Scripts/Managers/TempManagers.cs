@@ -61,23 +61,23 @@ public class TempManagers : MonoBehaviour
     }
     // 상황에 따른 '마우스 가운데잠금 및 보이기', '타임스케일' 조정
     // 일단 적당한 Manager가 없어 여기에 넣음. SceneLoader와 UI_Main, UI_Pause에서 사용.
-    // Player측에서 조작했을 것으로 예상되기에 일단 주석처리
-    //static public void SetStateTitle()
-    //{
-    //    Cursor.lockState = CursorLockMode.None;
-    //    Cursor.visible = true;
-    //    Time.timeScale = 1f;
-    //}
-    //static public void SetStatePause()
-    //{
-    //    Cursor.lockState = CursorLockMode.None;
-    //    Cursor.visible = true;
-    //    Time.timeScale = 0f;
-    //}
-    //static public void SetStatePlaying()
-    //{
-    //    Cursor.lockState = CursorLockMode.Locked;
-    //    Cursor.visible = false;
-    //    Time.timeScale = 1f;
-    //}
+    // ESC로 일시정지 버튼을 누르는 기능이 없어 일단 주석처리 해놓음.
+    static public void SetStateTitle()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 1f;
+    }
+    static public void SetStatePause()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+    }
+    static public void SetStatePlaying()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+    }
 }

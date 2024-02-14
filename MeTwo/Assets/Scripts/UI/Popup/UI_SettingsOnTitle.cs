@@ -116,6 +116,10 @@ public class UI_SettingsOnTitle : UI_Popup
     }
     void OnClickResetData()
     {
-        TempManagers.UI.ShowPopupUI<UI_Alert2Btn>();
+        TempManagers.UI.ShowAlert2BtnUI("저장된 모든 정보를 삭제합니다", () =>
+        {
+            PlayerPrefs.DeleteAll();
+            TempManagers.UI.ShowAlert1BtnUI("데이터를 삭제하였습니다.");
+        });
     }
 }

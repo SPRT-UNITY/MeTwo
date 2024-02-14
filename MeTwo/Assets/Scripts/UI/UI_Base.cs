@@ -30,6 +30,7 @@ public class UI_Base : MonoBehaviour
     {
         string[] names = Enum.GetNames(type); // 리플렉션 사용
         UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
+        Debug.Log(typeof(T));
         _objects.Add(typeof(T), objects);
 
         for (int i = 0; i < names.Length; i++)
@@ -57,6 +58,11 @@ public class UI_Base : MonoBehaviour
     protected Button GetButton(int idx) { return Get<Button>(idx); }
     protected Image GetImage(int idx) { return Get<Image>(idx); }
     protected Slider GetSlider(int idx) { return Get<Slider>(idx); }
+
+    public void ClearBindings()
+    {
+        _objects.Clear();
+    }
 
     public static void AddUIEvent(GameObject go, Action<PointerEventData> action, UIEvent type = UIEvent.Click)
     {

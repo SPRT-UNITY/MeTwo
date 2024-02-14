@@ -37,7 +37,7 @@ public class UI_Pause : UI_Popup
     }
     void OnClickResetStage()
     {
-        SceneManager.LoadScene("UI_Base_Game");
+        SceneManager.LoadScene(1);
     }
     void OnClickSettings()
     {
@@ -45,7 +45,7 @@ public class UI_Pause : UI_Popup
     }
     void OnClickBackTitle()
     {
-        SceneManager.LoadScene("UI_Base_Title");
+        SceneManager.LoadScene(0);
     }
     public void OnDestroy() // 파괴 시 재개
     {

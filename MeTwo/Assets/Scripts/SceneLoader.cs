@@ -22,12 +22,12 @@ public class SceneLoader : MonoBehaviour
         // Popup Order 초기화
         TempManagers.UI.StackClear();
 
-        if (scene.name == "UI_Base_Game")
+        if (scene.buildIndex == 1) // Game 씬
         {
             TempManagers.UI.ShowSceneUI<UI_Main>();
             //TempManagers.SetStatePlaying();
         }
-        if (scene.name == "UI_Base_Title")
+        if (scene.buildIndex == 0) // Title 씬
         {
             TempManagers.UI.ShowSceneUI<UI_TitleMenu>();
             //TempManagers.SetStateTitle();

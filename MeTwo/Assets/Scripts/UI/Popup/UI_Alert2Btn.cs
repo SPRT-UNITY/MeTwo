@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_Alert2Btn : UI_Popup
 {
+    enum TextMeshProUGUIs
+    {
+        AlertText,
+    }
     enum Buttons
     {
         CloseBtn,
         CancelBtn,
+        OkBtn,
+    }
+    enum PreButtons
+    {
         OkBtn,
     }
     void Start()
@@ -23,7 +33,7 @@ public class UI_Alert2Btn : UI_Popup
 
         GetButton((int)Buttons.CloseBtn).onClick.AddListener(OnClickClose); // 닫기 버튼 이벤트
         GetButton((int)Buttons.CancelBtn).onClick.AddListener(OnClickCancel); // 취소(=닫기) 버튼 이벤트
-        GetButton((int)Buttons.OkBtn).onClick.AddListener(OnClickOk); // 확인 시 이벤트
+        ClearBindings();
     }
     void OnClickClose()
     {
@@ -35,13 +45,20 @@ public class UI_Alert2Btn : UI_Popup
     }
     void OnClickOk()
     {
-        // UI Manager에서 현재 팝업창에서 실행될 메서드를 전달받아 실행하도록 수정
-        // 임시 : 저장된 데이터 삭제
-
-        PlayerPrefs.DeleteAll();
-        // UI Manager에서 현재 팝업창에서 실행될 메서드 목록 삭제하는 구문 추가
         TempManagers.UI.ClosePopupUI();
-        // 데이터 삭제의 경우, 데이터가 삭제되었다는 2초정도 Raycast 받지 않는 팝업 메시지 띄우기
-        Debug.Log("데이터를 삭제하였습니다.");
+    }
+    public void SetAlert(string message, Action onOkPressed)
+    {
+        Bind<TextMeshProUGUI>(typeof(TextMeshProUGUIs));
+        TextMeshProUGUI alertText = GetTextMeshProUGUI((int)TextMeshProUGUIs.AlertText);
+        Bind<Button>(typeof(PreButtons));
+        Button okButton = GetButton((int)PreButtons.OkBtn);
+
+        alertText.text = message;
+        okButton.onClick.RemoveAllListeners(); // 기존 리스너 제거
+        okButton.onClick.AddListener(OnClickOk); // Ok 버튼 클릭 시 팝업 닫기
+        okButton.onClick.AddListener(() => onOkPressed()); // 새 액션 추가
+
+        ClearBindings();
     }
 }

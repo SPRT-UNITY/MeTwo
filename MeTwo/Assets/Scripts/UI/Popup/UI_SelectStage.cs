@@ -30,6 +30,6 @@ public class UI_SelectStage : UI_Popup
     }
     void OnClickEnter()
     {
-        SceneManager.LoadScene("UI_Base_Game");
+        SceneManager.LoadScene(1);
     }
 }

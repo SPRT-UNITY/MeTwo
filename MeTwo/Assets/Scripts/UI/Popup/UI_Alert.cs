@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UI_Alert : MonoBehaviour
+public class UI_Alert : UI_Popup
 {
-    // Start is called before the first frame update
+    enum TextMeshProUGUIs
+    {
+        AlertText,
+    }
     void Start()
     {
-        
+        Init();
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void Init()
     {
-        
+        base.Init();
+
+        ClearBindings();
+    }
+    public void SetAlert(string message)
+    {
+        Bind<TextMeshProUGUI>(typeof(TextMeshProUGUIs));
+        TextMeshProUGUI alertText = GetTextMeshProUGUI((int)TextMeshProUGUIs.AlertText);
+
+        alertText.text = message;
+
+        ClearBindings();
     }
 }
