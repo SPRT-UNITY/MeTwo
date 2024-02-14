@@ -6,12 +6,10 @@ using UnityEngine.AddressableAssets;
 
 public class SoundManagerTest : MonoBehaviour
 {
-    [SerializeField]
-    AssetLabelReference assetLabel;
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("playSFX", 5f);
+        Invoke("playBGM", 5f);
     }
 
     // Update is called once per frame
@@ -20,9 +18,14 @@ public class SoundManagerTest : MonoBehaviour
         
     }
     
-    void playSFX() 
+    void playBGM() 
     {
 
-        SoundManager.Instance.PlaySFX("Player_Footstep_01");
+        SoundManager.Instance.PlayBGM("Temp");
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        SoundManager.Instance.PlaySFX("Land");
     }
 }

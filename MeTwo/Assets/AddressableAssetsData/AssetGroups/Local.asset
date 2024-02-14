@@ -17,74 +17,32 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 3845657c4febd8e4d8c8523b5c1d6b51
   m_SerializeEntries:
-  - m_GUID: 655f874f16a97db4795f06ec4e974bed
-    m_Address: Assets/3a5b9ff06427f3f7524c0ce4cf785f2ece19b9f0f4d6baabb50d798b9f8aaadd.gif
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - BGM
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ff697d3070687ce4583faa0561a145a2
-    m_Address: PlayerLandSFX
+  - m_GUID: 797cd8dbae3295649b63ba6de1243fad
+    m_Address: Assets/Sounds/SFX/Jump.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - SFX
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 72f526a6a9890f643a88e85a61c86c8a
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_01.wav
+  - m_GUID: 900e7c004d930f24ab3a3193dec66dd6
+    m_Address: Assets/Sounds/SFX/DM-CGS-01.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - SFX
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 85016e0f2b01da248b9663dd49a161b0
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_02.wav
+  - m_GUID: c4a04aaab66cfae4e936c956423131a6
+    m_Address: Assets/Sounds/SFX/DM-CGS-40.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - SFX
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 186de84b3207156479abe98f4958fed0
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_03.wav
+  - m_GUID: 0e1d66e5dee9cce4288ebd5da29e3cc8
+    m_Address: Assets/Sounds/SFX/Walk.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - SFX
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1a91fcd19acf1e54bba0945d9f390849
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_04.wav
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SFX
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 14e8a8d2158bec840b56c54f5266e692
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_05.wav
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SFX
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 29841e7d5bbfb5b419c9ad16ca8bc4c1
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_06.wav
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SFX
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dd1af302b8902684d9381de1f2d3a5af
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_07.wav
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SFX
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 67c8b33e424ccdc4486edf538ab91c5a
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_08.wav
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SFX
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 274649b0e221539409070ebf6c18918b
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_09.wav
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SFX
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a3194b8bbc96ef84fab1f98f4b7dae3e
-    m_Address: Assets/TempAssets/Sfx/Player_Footstep_10.wav
+  - m_GUID: 34a62f22765d62a4e98997a62dce74cb
+    m_Address: Assets/Sounds/SFX/UISelect.wav
     m_ReadOnly: 0
     m_SerializedLabels:
     - SFX
