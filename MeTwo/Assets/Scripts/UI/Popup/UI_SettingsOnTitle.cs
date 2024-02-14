@@ -104,14 +104,13 @@ public class UI_SettingsOnTitle : UI_Popup
     }
     void ToggleMute(string category)
     {
-        // SoundManager의 Mute 상태를 토글하고 PlayerPrefs를 업데이트하는 로직을 구현합니다.
+        // SoundManager의 Mute 상태를 토글하는 로직을 구현
         // 예: SoundManager.Instance.ToggleMute(category);
 
-        // 아이콘 업데이트
         bool isMuted = PlayerPrefs.GetInt(category + "Mute", 0) == 1;
         PlayerPrefs.SetInt(category + "Mute", isMuted ? 0 : 1);
 
-        // 아이콘 이미지를 변경합니다.
+        // 아이콘 이미지를 변경
         Image icon = category == "Master" ? MasterIcon : category == "BGM" ? BGMIcon : SFXIcon;
         UpdateIcon(icon, !isMuted);
     }

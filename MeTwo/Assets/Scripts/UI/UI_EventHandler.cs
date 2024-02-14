@@ -14,8 +14,6 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        //Debug.Log("OnDrag");
-        //transform.position = eventData.position; // 테스트: 드래그해서 옮기기
         OnDragHandler?.Invoke(eventData);
     }
 }
