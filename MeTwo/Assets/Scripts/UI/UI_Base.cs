@@ -35,9 +35,9 @@ public class UI_Base : MonoBehaviour
         for (int i = 0; i < names.Length; i++)
         {
             if (typeof(T) == typeof(GameObject))
-                objects[i] = FindChild(gameObject, names[i], true);
+                objects[i] = FindChild(gameObject, names[i], true, true);
             else
-                objects[i] = FindChild<T>(gameObject, names[i], true);
+                objects[i] = FindChild<T>(gameObject, names[i], true, true);
 
             if (objects[i] == null) // 디버그용
                 Debug.Log($"Failed to bind({names[i]})");
@@ -82,14 +82,14 @@ public class UI_Base : MonoBehaviour
 
 
     // 유틸성 메서드
-    public GameObject FindChild(GameObject go, string name = null, bool recursive = false)
+    public GameObject FindChild(GameObject go, string name = null, bool recursive = false, bool includeInactive = false)
     {
-        Transform transform = FindChild<Transform>(go, name, recursive);
+        Transform transform = FindChild<Transform>(go, name, recursive, includeInactive);
         if (transform == null)
             return null;
         return transform.gameObject;
     }
-    public T FindChild<T>(GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
+    public T FindChild<T>(GameObject go, string name = null, bool recursive = false, bool includeInactive = false) where T : UnityEngine.Object
     {
         if (go == null)
             return null;
@@ -112,7 +112,7 @@ public class UI_Base : MonoBehaviour
         }
         else
         {
-            foreach (T component in go.GetComponentsInChildren<T>())
+            foreach (T component in go.GetComponentsInChildren<T>(includeInactive))
             {
                 if (string.IsNullOrEmpty(name) || component.name == name)
                 {

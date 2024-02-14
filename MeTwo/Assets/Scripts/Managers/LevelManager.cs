@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     private int _canEnter { get; set; } // 입장 가능 스테이지
     private int _nowEnter { get; set; } // 현재 입장 스테이지
+    private int _limEnter { get; set; } // 마지막 스테이지
 
     private float _scoreFloor0 { get; set; } // 0스테이지 점수
     private float _scoreFloor1 { get; set; } // 1스테이지 점수
@@ -22,6 +23,7 @@ public class LevelManager : MonoBehaviour
     {
         _canEnter = PlayerPrefs.GetInt("CanEnter", 0);
         _nowEnter = -1; // 타이틀화면: -1
+        _limEnter = 2;
         _scoreFloor0 = PlayerPrefs.GetFloat("ScoreFloor0", 0.0f);
         _scoreFloor1 = PlayerPrefs.GetFloat("ScoreFloor1", 0.0f);
         _scoreFloor2 = PlayerPrefs.GetFloat("ScoreFloor2", 0.0f);
@@ -45,6 +47,11 @@ public class LevelManager : MonoBehaviour
             _nowEnter = value;
             OnSetNowEnter?.Invoke();
         }
+    }
+    public int limEnter
+    {
+        get { return _limEnter; }
+        set { }
     }
     public float scoreFloor0
     {
