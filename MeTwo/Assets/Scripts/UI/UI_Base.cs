@@ -30,7 +30,6 @@ public class UI_Base : MonoBehaviour
     {
         string[] names = Enum.GetNames(type); // 리플렉션 사용
         UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
-        Debug.Log(typeof(T));
         _objects.Add(typeof(T), objects);
 
         for (int i = 0; i < names.Length; i++)
@@ -105,7 +104,7 @@ public class UI_Base : MonoBehaviour
                     T component = transform.GetComponent<T>();
                     if (component != null)
                     {
-                        Debug.Log($"Bind Transform: {name}"); // 디버그용
+                        //Debug.Log($"Bind Transform: {name}"); // 디버그용
                         return component;
                     }
                 }
@@ -117,7 +116,7 @@ public class UI_Base : MonoBehaviour
             {
                 if (string.IsNullOrEmpty(name) || component.name == name)
                 {
-                    Debug.Log($"Bind Component: {name}"); // 디버그용
+                    //Debug.Log($"Bind Component: {name}"); // 디버그용
                     return component;
                 }
             }

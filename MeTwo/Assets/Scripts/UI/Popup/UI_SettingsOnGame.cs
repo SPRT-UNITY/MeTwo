@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class UI_SettingsOnGame : UI_Popup
 {
@@ -30,6 +29,11 @@ public class UI_SettingsOnGame : UI_Popup
     Image BGMIcon;
     Image SFXIcon;
 
+    Slider masterSlider;
+    Slider bgmSlider;
+    Slider sfxSlider;
+    Slider dpiSlider;
+
     void Start()
     {
         Init();
@@ -49,66 +53,76 @@ public class UI_SettingsOnGame : UI_Popup
         MuteSprite = Resources.Load<Sprite>("Icons/mute_black");
         UnmuteSprite = Resources.Load<Sprite>("Icons/soundPlus_black");
 
-        UpdateIcon(MasterIcon, PlayerPrefs.GetInt("MasterMute", 0) == 1);
-        UpdateIcon(BGMIcon, PlayerPrefs.GetInt("BGMMute", 0) == 1);
-        UpdateIcon(SFXIcon, PlayerPrefs.GetInt("SFXMute", 0) == 1);
+        UpdateIcon(MasterIcon, SoundManager.Instance.isMasterMuted == true);
+        UpdateIcon(BGMIcon, SoundManager.Instance.isBGMMuted == true);
+        UpdateIcon(SFXIcon, SoundManager.Instance.isSFXMuted == true);
 
-        MasterIcon.GetComponent<Button>().onClick.AddListener(() => ToggleMute("Master"));
-        BGMIcon.GetComponent<Button>().onClick.AddListener(() => ToggleMute("BGM"));
-        SFXIcon.GetComponent<Button>().onClick.AddListener(() => ToggleMute("SFX"));
+        MasterIcon.GetComponent<Button>().onClick.AddListener(() => ToggleMasterMute());
+        BGMIcon.GetComponent<Button>().onClick.AddListener(() => ToggleBGMMute());
+        SFXIcon.GetComponent<Button>().onClick.AddListener(() => ToggleSFXMute());
 
-        Slider masterSlider = GetSlider((int)Sliders.MasterSlider);
-        Slider bgmSlider = GetSlider((int)Sliders.BGMSlider);
-        Slider sfxSlider = GetSlider((int)Sliders.SFXSlider);
-        Slider dpiSlider = GetSlider((int)Sliders.DPISlider);
+        masterSlider = GetSlider((int)Sliders.MasterSlider);
+        bgmSlider = GetSlider((int)Sliders.BGMSlider);
+        sfxSlider = GetSlider((int)Sliders.SFXSlider);
+        dpiSlider = GetSlider((int)Sliders.DPISlider);
 
-        masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
-        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
-        dpiSlider.value = PlayerPrefs.GetFloat("DPI", 0.5f);
+        masterSlider.AddComponent<SliderEventHandler>();
+        bgmSlider.AddComponent<SliderEventHandler>();
+        sfxSlider.AddComponent<SliderEventHandler>();
+        dpiSlider.AddComponent<SliderEventHandler>();
 
-        masterSlider.onValueChanged.AddListener(OnMasterSliderChanged);
-        bgmSlider.onValueChanged.AddListener(OnBGMSliderChanged);
-        sfxSlider.onValueChanged.AddListener(OnSFXSliderChanged);
-        dpiSlider.onValueChanged.AddListener(OnDPISliderChanged);
+        foreach (var handler in masterSlider.GetComponentsInChildren<SliderEventHandler>()) handler.OnDragEnd += SaveSliderValue;
+        foreach (var handler in bgmSlider.GetComponentsInChildren<SliderEventHandler>()) handler.OnDragEnd += SaveSliderValue;
+        foreach (var handler in sfxSlider.GetComponentsInChildren<SliderEventHandler>()) handler.OnDragEnd += SaveSliderValue;
+        foreach (var handler in dpiSlider.GetComponentsInChildren<SliderEventHandler>()) handler.OnDragEnd += SaveSliderValue;
+
+        masterSlider.value = SoundManager.Instance.masterVolumeScale;
+        bgmSlider.value = SoundManager.Instance.bgmVolumeScale;
+        sfxSlider.value = SoundManager.Instance.sfxVolumeScale;
+        dpiSlider.value = PlayerPrefs.GetFloat("DPI", 0.5f); // DPI 임시구현
 
         GetButton((int)Buttons.CloseBtn).onClick.AddListener(OnClickClose); // 닫기 버튼 이벤트
+    }
+    void SaveSliderValue()
+    {
+        // 슬라이더 값 가져오기
+        float masterVolume = masterSlider.value;
+        float bgmVolume = bgmSlider.value;
+        float sfxVolume = sfxSlider.value;
+        float dpiValue = dpiSlider.value;
+
+        // SoundManager에 볼륨 값 업데이트
+        SoundManager.Instance.masterVolumeScale = masterVolume;
+        SoundManager.Instance.bgmVolumeScale = bgmVolume;
+        SoundManager.Instance.sfxVolumeScale = sfxVolume;
+        PlayerPrefs.SetFloat("DPI", dpiValue); // DPI 임시구현
+
+        Debug.Log($"saved: Master Volume = {masterVolume}, BGM Volume = {bgmVolume}, SFX Volume = {sfxVolume}, DPI = {dpiValue}");
     }
     void OnClickClose()
     {
         TempManagers.UI.ClosePopupUI();
     }
-    void OnMasterSliderChanged(float value)
-    {
-        PlayerPrefs.SetFloat("MasterVolume", value);
-    }
-    void OnBGMSliderChanged(float value)
-    {
-        PlayerPrefs.SetFloat("BGMVolume", value);
-    }
-    void OnSFXSliderChanged(float value)
-    {
-        PlayerPrefs.SetFloat("SFXVolume", value);
-    }
-    void OnDPISliderChanged(float value)
-    {
-        PlayerPrefs.SetFloat("DPI", value);
-    }
-
     void UpdateIcon(Image icon, bool isMuted)
     {
         icon.sprite = isMuted ? MuteSprite : UnmuteSprite;
     }
-    void ToggleMute(string category)
+    void ToggleMasterMute()
     {
-        // SoundManager의 Mute 상태를 토글하는 로직을 구현
-        // 예: SoundManager.Instance.ToggleMute(category);
-
-        bool isMuted = PlayerPrefs.GetInt(category + "Mute", 0) == 1;
-        PlayerPrefs.SetInt(category + "Mute", isMuted ? 0 : 1);
-
-        // 아이콘 이미지를 변경
-        Image icon = category == "Master" ? MasterIcon : category == "BGM" ? BGMIcon : SFXIcon;
-        UpdateIcon(icon, !isMuted);
+        bool isMuted = SoundManager.Instance.isMasterMuted;
+        SoundManager.Instance.isMasterMuted = !isMuted;
+        UpdateIcon(MasterIcon, !isMuted);
+    }
+    void ToggleBGMMute()
+    {
+        bool isMuted = SoundManager.Instance.isBGMMuted;
+        SoundManager.Instance.isBGMMuted = !isMuted;
+        UpdateIcon(BGMIcon, !isMuted);
+    }
+    void ToggleSFXMute()
+    {
+        bool isMuted = SoundManager.Instance.isSFXMuted;
+        SoundManager.Instance.isSFXMuted = !isMuted;
+        UpdateIcon(SFXIcon, !isMuted);
     }
 }
