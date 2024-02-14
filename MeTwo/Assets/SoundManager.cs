@@ -160,15 +160,9 @@ public class SoundManager : MonoBehaviour
         masterVolumeScale = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
         bgmVolumeScale = PlayerPrefs.GetFloat("BGMVolume", 0.5f);
         sfxVolumeScale = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
-        Debug.Log(isMasterMuted);
-        Debug.Log(isBGMMuted);
-        Debug.Log(isSFXMuted);
         isMasterMuted = Convert.ToBoolean(PlayerPrefs.GetInt("MasterMute", 0));
         isBGMMuted = Convert.ToBoolean(PlayerPrefs.GetInt("BGMMute", 0));
         isSFXMuted = Convert.ToBoolean(PlayerPrefs.GetInt("SFXMute", 0));
-        Debug.Log(isMasterMuted);
-        Debug.Log(isBGMMuted);
-        Debug.Log(isSFXMuted);
     }
 
 
