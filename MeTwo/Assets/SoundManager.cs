@@ -17,11 +17,12 @@ public class SoundManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<SoundManager>();
+                GameObject gameObject = GameObject.Find("SoundManager");
 
-                if (instance == null)
+                if (gameObject == null)
                 {
-                    instance = new GameObject("SoundManager").AddComponent<SoundManager>();
+                    gameObject = new GameObject("SoundManager");
+                    instance = gameObject.AddComponent<SoundManager>();
                 }
             }
             return instance;
