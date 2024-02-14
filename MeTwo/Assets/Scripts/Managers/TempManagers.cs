@@ -10,6 +10,9 @@ public class TempManagers : MonoBehaviour
     UIManager _ui;
     public static UIManager UI { get { return Instance._ui; } }
 
+    LevelManager _lv;
+    public static LevelManager LV { get { return Instance._lv; } }
+
     SceneLoader _sl;
     public static SceneLoader SL { get { return Instance._sl; } }
 
@@ -45,6 +48,16 @@ public class TempManagers : MonoBehaviour
             else
             {
                 s_instance._ui = go.GetComponent<UIManager>();
+            }
+
+            // LevelManager 컴포넌트 추가 및 참조 설정
+            if (go.GetComponent<LevelManager>() == null)
+            {
+                s_instance._lv = go.AddComponent<LevelManager>();
+            }
+            else
+            {
+                s_instance._lv = go.GetComponent<LevelManager>();
             }
 
             // SceneLoader 컴포넌트 추가 및 참조 설정
