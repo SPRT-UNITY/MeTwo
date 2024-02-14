@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Local
+  m_EditorClassIdentifier: 
+  m_GroupName: Local
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3845657c4febd8e4d8c8523b5c1d6b51
+  m_SerializeEntries:
+  - m_GUID: 797cd8dbae3295649b63ba6de1243fad
+    m_Address: Assets/Sounds/SFX/Jump.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 900e7c004d930f24ab3a3193dec66dd6
+    m_Address: Assets/Sounds/SFX/DM-CGS-01.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4a04aaab66cfae4e936c956423131a6
+    m_Address: Assets/Sounds/SFX/DM-CGS-40.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e1d66e5dee9cce4288ebd5da29e3cc8
+    m_Address: Assets/Sounds/SFX/Walk.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 34a62f22765d62a4e98997a62dce74cb
+    m_Address: Assets/Sounds/SFX/UISelect.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SFX
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4042db6638969ef4a84401a39f48f9a2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 26a92337fc5f67348afbaadebbfbef9c, type: 2}
+    - {fileID: 11400000, guid: 9508dc2c05e156f419dca204a40514d3, type: 2}
