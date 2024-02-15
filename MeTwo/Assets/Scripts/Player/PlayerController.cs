@@ -198,15 +198,20 @@ public class PlayerController : MonoBehaviour
     }
 
     // 상호작용 UI 띄우는 Method
+    int isInterecting = 0; // 0: 평시, 2:상호작용진입, 1: 상호작용중
     private void CheckInteraction()
     {
         var ray = new Ray(transform.position + (Vector3.up * 0.5f), character.forward);
-        
+
         if (Physics.Raycast(ray, out var hit, 0.5f, interactableLayerMask))
         {
             //TODO interactable interface call
-            
+            if (isInterecting == 0) { isInterecting = 2; }
+            if (isInterecting == 2) { TempManagers.UI.ShowDisplayUI<UI_Interact>(messages: new string[] { "F", "상호작용하기" }); }
+            isInterecting = 1;
         }
+        else isInterecting = 0;
+
     }
     
     // 상호작용 시도
