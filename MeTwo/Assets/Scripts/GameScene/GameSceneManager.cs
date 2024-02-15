@@ -103,4 +103,14 @@ public class GameSceneManager : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
     }
+
+    public void RespawnPlayer() 
+    {
+        playerController.gameObject.transform.position = stage.playerStarter.transform.position + Vector3.up * 0.5f;
+    }
+
+    public void RespawnShadow() 
+    {
+        shadowController.gameObject.transform.position = stage.playerStarter.transform.position + Vector3.up * 0.5f;
+    }
 }
