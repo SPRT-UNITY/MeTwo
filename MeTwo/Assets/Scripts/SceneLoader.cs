@@ -26,13 +26,13 @@ public class SceneLoader : MonoBehaviour
         {
             TempManagers.UI.ShowSceneUI<UI_Main>();
             GameSceneManager.Instance.InitGame();
-            //TempManagers.SetStatePlaying();
+            TempManagers.SetStatePlaying();
         }
         if (scene.buildIndex == 0) // Title 씬
         {
             TempManagers.LV.nowEnter = -1;
             TempManagers.UI.ShowSceneUI<UI_TitleMenu>();
-            //TempManagers.SetStateTitle();
+            TempManagers.SetStateTitle();
         }
     }
     #endregion
