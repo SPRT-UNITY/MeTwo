@@ -63,21 +63,29 @@ public class UI_SelectStage : UI_Popup
         };
         int canEnter = TempManagers.LV.canEnter;
         int limEnter = TempManagers.LV.limEnter;
-        for (int i=0; i<= (canEnter<limEnter?canEnter:limEnter); i++)
+        //for (int i=0; i<= (canEnter<limEnter?canEnter:limEnter); i++)
+        //{
+        //    Blocks[i].gameObject.SetActive(false);
+        //}
+        for (int i = 1; i <= limEnter && PlayerPrefs.GetFloat($"Stage{(i-1).ToString()}", 0f) > 0f; i++)
         {
             Blocks[i].gameObject.SetActive(false);
         }
 
         // 최고 점수 표시
         int score;
-        PlayerPrefs.SetFloat("ScoreFloor0", 1f);
-        score = (int)PlayerPrefs.GetFloat("ScoreFloor0", 0f);
+        //PlayerPrefs.SetFloat("ScoreFloor0", 1f);
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloor0", 0f);
+        score = (int)PlayerPrefs.GetFloat("Stage0", 0f);
         GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_Stage0).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
-        score = (int)PlayerPrefs.GetFloat("ScoreFloor1", 0f);
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloor1", 0f);
+        score = (int)PlayerPrefs.GetFloat("Stage1", 0f);
         GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_Stage1).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
-        score = (int)PlayerPrefs.GetFloat("ScoreFloor2", 0f);
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloor2", 0f);
+        score = (int)PlayerPrefs.GetFloat("Stage2", 0f);
         GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_Stage2).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
-        score = (int)PlayerPrefs.GetFloat("ScoreFloorN", 0f);
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloorN", 0f);
+        score = (int)PlayerPrefs.GetFloat("StageN", 0f);
         GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_StageN).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
 
         // 체크마크 목록
