@@ -29,8 +29,8 @@ public class SceneLoader : MonoBehaviour
         }
         if (scene.buildIndex == 0) // Title 씬
         {
-            TempManagers.UI.ShowSceneUI<UI_TitleMenu>();
             TempManagers.LV.nowEnter = -1;
+            TempManagers.UI.ShowSceneUI<UI_TitleMenu>();
             //TempManagers.SetStateTitle();
         }
     }

@@ -84,6 +84,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // 랭크 매기기 메서드 등?
-    // ...
+    // 랭크 매기기 메서드. 이후 필요하면 업데이트
+    public string ScoreToRank(float score)
+    {
+        string rank = "S";
+        return rank;
+    }
 }
