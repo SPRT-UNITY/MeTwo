@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,6 +11,10 @@ public class UI_Main : UI_Scene
     {
         PauseBtn,
     }
+    enum TextMeshProUGUIs
+    {
+        TimeText,
+    }
     void Start()
     {
         Init();
@@ -19,14 +24,26 @@ public class UI_Main : UI_Scene
     {
         base.Init();
 
-        Bind<Button>(typeof(Buttons));
-        GetButton((int)Buttons.PauseBtn).onClick.AddListener(OnClickPause); // 일시정지 이벤트
+        timer = 0f;
 
+        Bind<Button>(typeof(Buttons));
+        Bind<TextMeshProUGUI>(typeof(TextMeshProUGUIs));
+
+        GetButton((int)Buttons.PauseBtn).onClick.AddListener(OnClickPause); // 일시정지 이벤트
+        timeText = GetTextMeshProUGUI((int)TextMeshProUGUIs.TimeText);
+
+    }
+    float timer;
+    TextMeshProUGUI timeText;
+    void Update()
+    {
+        timer += Time.deltaTime;
+        timeText.text = $"{((int)timer/60).ToString("00")} : {((int)timer % 60).ToString("00")}";
     }
 
     void OnClickPause()
     {
         TempManagers.UI.ShowPopupUI<UI_Pause>();
-        //TempManagers.SetStatePause();
+        TempManagers.SetStatePause();
     }
 }
