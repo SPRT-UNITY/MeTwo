@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 1612793492639389253}
   - component: {fileID: 6504018209304187090}
   - component: {fileID: 4029997232280969279}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +285,7 @@ MonoBehaviour:
   btnPushed: 0
   timeLimit: 0
   timer: 0
+  count: 0
 --- !u!1 &341460318457089870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,7 +1859,7 @@ Transform:
   m_GameObject: {fileID: 3322583304581127594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 12.138498, y: -33.23899, z: 8.974514}
-  m_LocalScale: {x: 1, y: 0.3, z: 1}
+  m_LocalScale: {x: 2, y: 0.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6830352521174946756}
@@ -1969,6 +1970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePushed: 0
+  tilePushing: 0
 --- !u!1 &3646838246567757316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,7 +2532,7 @@ Transform:
   m_GameObject: {fileID: 4819266770524703340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.371501, y: -33.23899, z: 8.974514}
-  m_LocalScale: {x: 1, y: 0.3, z: 1}
+  m_LocalScale: {x: 2, y: 0.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6830352521174946756}
@@ -2641,6 +2643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePushed: 0
+  tilePushing: 0
 --- !u!1 &4947456779670719484
 GameObject:
   m_ObjectHideFlags: 0
