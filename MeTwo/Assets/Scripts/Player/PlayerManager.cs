@@ -212,7 +212,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void CallPauseEvent(InputAction.CallbackContext context) // 왠지 로그가 세개씩 뜨긴 하는데 아무렴 어떤가
     {
-        Debug.Log($"CallPauseEvent 작동함, 현재 PopupStack수 : {TempManagers.UI.GetPopStackCount()}");
+        //Debug.Log($"CallPauseEvent 작동함, 현재 PopupStack수 : {TempManagers.UI.GetPopStackCount()}");
         if (context.phase == InputActionPhase.Started)
         {
             if (TempManagers.UI.GetPopStackCount() > 0)
