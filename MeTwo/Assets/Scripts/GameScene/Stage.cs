@@ -17,6 +17,7 @@ public class Stage : MonoBehaviour
         set 
         { 
             _clearTime = value;
+            Debug.Log(transform.root.name);
             PlayerPrefs.SetFloat(transform.root.name, _clearTime);
         } 
     }
