@@ -26,6 +26,7 @@ public class SceneLoader : MonoBehaviour
         if (scene.buildIndex == 1) // Game 씬
         {
             TempManagers.UI.ShowSceneUI<UI_Main>();
+            TempManagers.UI.ShowSceneUI<UI_CloneIcon>();
             GameSceneManager.Instance.InitGame();
             TempManagers.SetStatePlaying();
 
