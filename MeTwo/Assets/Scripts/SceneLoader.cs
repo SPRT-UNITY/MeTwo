@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +28,11 @@ public class SceneLoader : MonoBehaviour
             TempManagers.UI.ShowSceneUI<UI_Main>();
             GameSceneManager.Instance.InitGame();
             TempManagers.SetStatePlaying();
+
+            GameSceneManager.Instance.ResetOnClearGameEvent();
+            GameSceneManager.Instance.OnClearGameEvent += (() => TempManagers.UI.ShowPopupUI<UI_Clear>());
+            GameSceneManager.Instance.OnClearGameEvent += TempManagers.SetStatePause;
+            GameSceneManager.Instance.OnClearGameEvent += TempManagers.LV.saveCustomPlayerPrefs;
         }
         if (scene.buildIndex == 0) // Title 씬
         {

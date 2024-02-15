@@ -144,7 +144,7 @@ public class UIManager : MonoBehaviour
     }
 
     // PopupUI 닫기
-    public void ClosePopupUI(UI_Popup popup) // 이건... 사용하지 않도록. 매개변수 없이 하는 것을 권장.
+    public void ClosePopupUI(UI_Popup popup) // 이건... 사용하지 않도록. 아래의 매개변수 없이 하는 것을 권장.
     {
         if (_popupStack.Count == 0)
         {
