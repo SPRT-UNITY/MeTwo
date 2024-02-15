@@ -81,10 +81,15 @@ public class GameSceneManager : MonoBehaviour
         SetGamePlaying();
     }
 
-    public void ClearGame() 
+    public void ClearGame()
     {
-        OnClearGameEvent.Invoke();
         stage.clearTime = gameTime;
+        OnClearGameEvent.Invoke();
+    }
+
+    public void ResetOnClearGameEvent()
+    {
+        OnClearGameEvent = null;
     }
 
     public void SetGamePause() 
