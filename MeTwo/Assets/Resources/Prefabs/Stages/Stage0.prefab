@@ -154,7 +154,8 @@ GameObject:
   - component: {fileID: 1612793492639389253}
   - component: {fileID: 6504018209304187090}
   - component: {fileID: 4029997232280969279}
-  m_Layer: 0
+  - component: {fileID: 3662957525018838278}
+  m_Layer: 13
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +286,28 @@ MonoBehaviour:
   btnPushed: 0
   timeLimit: 0
   timer: 0
+  count: 0
+--- !u!65 &3662957525018838278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197613500648559666}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 2.5, z: 1.2}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940699}
 --- !u!1 &341460318457089870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,7 +1353,7 @@ GameObject:
   - component: {fileID: 6506194761681312817}
   - component: {fileID: 1394591871926499297}
   m_Layer: 0
-  m_Name: TutorialStage
+  m_Name: Stage0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1969,6 +1992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePushed: 0
+  tilePushing: 0
 --- !u!1 &3646838246567757316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,6 +2665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePushed: 0
+  tilePushing: 0
 --- !u!1 &4947456779670719484
 GameObject:
   m_ObjectHideFlags: 0
