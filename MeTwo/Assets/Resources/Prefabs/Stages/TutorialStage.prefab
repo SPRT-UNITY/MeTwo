@@ -1328,6 +1328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6506194761681312817}
+  - component: {fileID: 1394591871926499297}
   m_Layer: 0
   m_Name: TutorialStage
   m_TagString: Untagged
@@ -1354,8 +1355,23 @@ Transform:
   - {fileID: 8607471253585218694}
   - {fileID: 394521531521376959}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1394591871926499297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108643871740512530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79af350645e460f4cbd05000215d4503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStarter: {fileID: 3572040018665083836}
+  shadowStarter: {fileID: 9200889937401405663}
+  clearObject: {fileID: 5226385254649978726}
 --- !u!1 &2243089427823310628
 GameObject:
   m_ObjectHideFlags: 0
