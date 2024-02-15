@@ -9,6 +9,18 @@ public class Stage : MonoBehaviour
     public PlayerStarter shadowStarter;
     public ClearObject clearObject;
 
+    private float _clearTime;
+
+    public float clearTime
+    {
+        get { return _clearTime; }
+        set 
+        { 
+            _clearTime = value;
+            PlayerPrefs.SetFloat(transform.root.name, _clearTime);
+        } 
+    }
+
     private void Awake()
     {
         PlayerStarter[] starters = transform.GetComponentsInChildren<PlayerStarter>();
@@ -31,6 +43,8 @@ public class Stage : MonoBehaviour
         {
             Debug.LogError("clearObject가 없습니다!");
         }
+
+        clearTime = PlayerPrefs.GetFloat(transform.root.name, 0.0f);
     }
 
     // Start is called before the first frame update

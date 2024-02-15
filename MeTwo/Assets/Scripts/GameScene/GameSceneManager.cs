@@ -31,8 +31,7 @@ public class GameSceneManager : MonoBehaviour
     PlayerManager playerManager;
     GameObject stageObject;
 
-    [SerializeField]
-    Stage stage;
+    public Stage stage { get; private set; }
 
     PlayerController playerController;
     PlayerController shadowController;
@@ -51,8 +50,6 @@ public class GameSceneManager : MonoBehaviour
             playerManagerObject.transform.parent = transform;
             playerManager = playerManagerObject.GetComponent<PlayerManager>();
         }
-
-        InitGame();
     }
 
     void Start()
@@ -70,8 +67,8 @@ public class GameSceneManager : MonoBehaviour
 
     public void InitGame() 
     {
-        // stageObject = StageSelector.Instance.loadStage();
-        stage = stage.GetComponent<Stage>();
+        stageObject = StageSelector.Instance.loadStage();
+        stage = stageObject.GetComponent<Stage>();
 
         GameObject prefab = Resources.Load("Prefabs/Player") as GameObject;
 
@@ -87,6 +84,7 @@ public class GameSceneManager : MonoBehaviour
     public void ClearGame() 
     {
         OnClearGameEvent.Invoke();
+        stage.clearTime = gameTime;
     }
 
     public void SetGamePause() 
@@ -103,5 +101,15 @@ public class GameSceneManager : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
+    }
+
+    public void RespawnPlayer() 
+    {
+        playerController.gameObject.transform.position = stage.playerStarter.transform.position + Vector3.up * 0.5f;
+    }
+
+    public void RespawnShadow() 
+    {
+        shadowController.gameObject.transform.position = stage.playerStarter.transform.position + Vector3.up * 0.5f;
     }
 }
