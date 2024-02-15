@@ -51,8 +51,6 @@ public class GameSceneManager : MonoBehaviour
             playerManagerObject.transform.parent = transform;
             playerManager = playerManagerObject.GetComponent<PlayerManager>();
         }
-
-        InitGame();
     }
 
     void Start()
@@ -70,8 +68,8 @@ public class GameSceneManager : MonoBehaviour
 
     public void InitGame() 
     {
-        // stageObject = StageSelector.Instance.loadStage();
-        stage = stage.GetComponent<Stage>();
+        stageObject = StageSelector.Instance.loadStage();
+        stage = stageObject.GetComponent<Stage>();
 
         GameObject prefab = Resources.Load("Prefabs/Player") as GameObject;
 
@@ -87,6 +85,7 @@ public class GameSceneManager : MonoBehaviour
     public void ClearGame() 
     {
         OnClearGameEvent.Invoke();
+        stage.clearTime = gameTime;
     }
 
     public void SetGamePause() 
