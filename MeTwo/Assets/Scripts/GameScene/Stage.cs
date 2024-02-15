@@ -11,7 +11,7 @@ public class Stage : MonoBehaviour
 
     private void Awake()
     {
-        PlayerStarter[] starters = GameObject.FindObjectsOfType<PlayerStarter>();
+        PlayerStarter[] starters = transform.GetComponentsInChildren<PlayerStarter>();
         foreach(var i in starters) 
         {
             if(i.playerFlag == PlayerFlag.Player)
@@ -20,7 +20,7 @@ public class Stage : MonoBehaviour
                 shadowStarter = i;
         }
 
-        clearObject = GameObject.FindObjectOfType<ClearObject>();
+        clearObject = transform.GetComponentInChildren<ClearObject>();
 
         if(playerStarter == null || shadowStarter == null) 
         {
@@ -47,7 +47,7 @@ public class Stage : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        PlayerStarter[] starters = GameObject.FindObjectsOfType<PlayerStarter>();
+        PlayerStarter[] starters = transform.GetComponentsInChildren<PlayerStarter>();
         foreach (var i in starters)
         {
             if (i.playerFlag == PlayerFlag.Player)
@@ -56,7 +56,7 @@ public class Stage : MonoBehaviour
                 shadowStarter = i;
         }
 
-        clearObject = GameObject.FindObjectOfType<ClearObject>();
+        clearObject = transform.GetComponentInChildren<ClearObject>();
 
         if (playerStarter == null || shadowStarter == null)
         {
