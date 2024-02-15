@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         CheckIsGround();
+        CheckInteraction();
     }
 
     private void FixedUpdate()
@@ -196,7 +196,20 @@ public class PlayerController : MonoBehaviour
         _isGround = rays.Any(ray => Physics.Raycast(ray, 0.1f, groundLayerMask));
         _animator.SetBool("IsGround", _isGround);
     }
+
+    // 상호작용 UI 띄우는 Method
+    private void CheckInteraction()
+    {
+        var ray = new Ray(transform.position + (Vector3.up * 0.5f), character.forward);
+        
+        if (Physics.Raycast(ray, out var hit, 0.5f, interactableLayerMask))
+        {
+            //TODO interactable interface call
+            
+        }
+    }
     
+    // 상호작용 시도
     private void OnInteractionInput()
     {
         var ray = new Ray(transform.position + (Vector3.up * 0.5f), character.forward);
@@ -206,9 +219,9 @@ public class PlayerController : MonoBehaviour
             //TODO interactable interface call
             
         }
-        Debug.Log("interact");
     }
     
+    // 레이 확인용 Gizmo
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

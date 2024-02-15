@@ -23,7 +23,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerController _currentPlayerController;
     // 동시 조종 중 체크
     private bool _isBoth;
-    
+
     private void Awake()
     {
         onBothCharacterControlEvent += ToggleBothCharacterControl;
@@ -51,7 +51,6 @@ public class PlayerManager : MonoBehaviour
         // 방향 전환 등록
         onLeftRotateEvent += _shadowController.onLeftRotateEvent;
         onRightRotateEvent += _shadowController.onRightRotateEvent;
-        
         
         // 메인 캐릭터 설정
         _currentPlayerController = _playerController;
