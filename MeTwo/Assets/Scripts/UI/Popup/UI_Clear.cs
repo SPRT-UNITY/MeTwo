@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class UI_Clear : UI_Popup
         BackTitleBtn,
         NextStageBtn,
     }
-    enum Texts
+    enum TextMeshProUGUIs
     {
         ScoreText,
     }
@@ -26,7 +27,7 @@ public class UI_Clear : UI_Popup
         base.Init();
 
         Bind<Button>(typeof(Buttons));
-        Bind<Text>(typeof(Texts));
+        Bind<TextMeshProUGUI>(typeof(TextMeshProUGUIs));
 
         GetButton((int)Buttons.BackTitleBtn).onClick.AddListener(OnClickBackTitle); // 타이틀로 버튼 이벤트
         GetButton((int)Buttons.NextStageBtn).onClick.AddListener(OnClickNextStage); // 다음스테이지 버튼 이벤트
@@ -36,13 +37,13 @@ public class UI_Clear : UI_Popup
         switch(TempManagers.LV.nowEnter)
         {
             case 0:
-                Get<Text>((int)Texts.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor0}</b>초";
+                Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor0}</b>초";
                 break;
             case 1:
-                Get<Text>((int)Texts.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor1}</b>초";
+                Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor1}</b>초";
                 break;
             case 2:
-                Get<Text>((int)Texts.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor2}</b>초";
+                Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor2}</b>초";
                 break;
         }
     }

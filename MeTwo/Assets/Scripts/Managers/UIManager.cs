@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     int _order = 10; // Popup UI들에 부여할 order
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>(); // Popup UI를 관리할 스택
     //UI_Scene _sceneUI = null; // Popup처럼 Scene 관리할 무언가도 필요하다면 마련
+    List<UI_Display> _displayList = new List<UI_Display>(); // 
 
     public GameObject Root // UI들을 넣을 부모 오브젝트
     {
@@ -51,7 +52,7 @@ public class UIManager : MonoBehaviour
         return component;
     }
 
-    // 카테고리:SceneUI 생성
+    // SceneUI 생성
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {
         if (string.IsNullOrEmpty(name))
@@ -72,8 +73,49 @@ public class UIManager : MonoBehaviour
         return sceneUI;
     }
 
-    // 카테고리:PopupUI 생성
-    public T ShowPopupUI<T>(string name = null) where T : UI_Popup
+    // DisplayUI 생성
+    public T ShowDisplayUI<T>(string name = null, string[] messages = null) where T : UI_Display
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Resources.Load<GameObject>($"Prefabs/UI/{name}");
+        if (go == null)
+        {
+            Debug.LogError("프리팹 로드 실패");
+            return null;
+        }
+
+        GameObject instantiatedGo = Instantiate(go, new Vector3(0, 0, 0), Quaternion.identity, Root.transform);
+        instantiatedGo.name = instantiatedGo.name.Replace("(Clone)", "").Trim();
+
+        T display = GetOrAddComponent<T>(instantiatedGo);
+        display.Initialize(messages);
+        _displayList.Add(display);
+
+        return display;
+    }
+    // DisplayUI 삭제
+    public void CloseDisplayUI(string name)
+    {
+        // 리스트에서 해당 이름을 가진 DisplayUI 찾기
+        UI_Display displayToRemove = _displayList.Find(display => display.gameObject.name == name);
+        if (displayToRemove != null)
+        {
+            // 리스트에서 제거
+            _displayList.Remove(displayToRemove);
+
+            // 게임 오브젝트 파괴
+            Destroy(displayToRemove.gameObject);
+        }
+        else
+        {
+            Debug.LogError($"Failed to find DisplayUI name: {name}");
+        }
+    }
+
+    // PopupUI 생성
+    public T ShowPopupUI<T>(string name = null, string[] messages=null, Action[] actions = null) where T : UI_Popup
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
@@ -89,16 +131,20 @@ public class UIManager : MonoBehaviour
         instantiatedGo.name = instantiatedGo.name.Replace("(Clone)", "").Trim();
 
         T popup = GetOrAddComponent<T>(instantiatedGo);
+        popup.Initialize(messages, actions);
         _popupStack.Push(popup);
 
         return popup;
     }
 
-    // 카테고리:PopupUI 닫기
-    public void ClosePopupUI(UI_Popup popup)
+    // PopupUI 닫기
+    public void ClosePopupUI(UI_Popup popup) // 이건... 사용하지 않도록. 매개변수 없이 하는 것을 권장.
     {
         if (_popupStack.Count == 0)
+        {
+            Debug.Log("_popupStack.Count == 0");
             return;
+        }
         if (_popupStack.Peek() != popup)
         {
             Debug.Log("Close Popup Failed!");
@@ -109,7 +155,10 @@ public class UIManager : MonoBehaviour
     public void ClosePopupUI()
     {
         if (_popupStack.Count == 0)
+        {
+            Debug.Log("_popupStack.Count == 0");
             return;
+        }
         UI_Popup popup = _popupStack.Pop();
         Destroy(popup.gameObject);
         popup = null;
@@ -129,7 +178,6 @@ public class UIManager : MonoBehaviour
         UI_Alert2Btn alertPopup = TempManagers.UI.ShowPopupUI<UI_Alert2Btn>();
         if (alertPopup != null)
         {
-
             alertPopup.SetAlert(message, onOkPressed);
         }
         return alertPopup;
@@ -139,7 +187,6 @@ public class UIManager : MonoBehaviour
         UI_Alert1Btn alertPopup = TempManagers.UI.ShowPopupUI<UI_Alert1Btn>();
         if (alertPopup != null)
         {
-
             alertPopup.SetAlert(message);
         }
         return alertPopup;
@@ -149,7 +196,6 @@ public class UIManager : MonoBehaviour
         UI_Alert alertPopup = TempManagers.UI.ShowPopupUI<UI_Alert>();
         if (alertPopup != null)
         {
-
             alertPopup.SetAlert(message);
         }
         return alertPopup;
