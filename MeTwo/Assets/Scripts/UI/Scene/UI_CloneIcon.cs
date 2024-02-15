@@ -12,10 +12,23 @@ public class UI_CloneIcon : UI_Scene
         Icon_clone_normal,
         Icon_clone_chain,
     }
-    Image[] CloneStatusIcons;
+    Image[] ControlStatusIcons;
+    int ControlStatusChain;
+    int ControlStatusSwap;
     void Start()
     {
         Init();
+
+        // PlayerManager 찾아서 구독하기..
+        ControlStatusChain = 0;
+        ControlStatusSwap = 0;
+
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        if (playerManager != null)
+        {
+            playerManager.onBothCharacterControlEvent += ChainControlStatusIcon;
+            playerManager.onSwapCharacterEvent += SwapControlStatusIcon;
+        }
     }
 
     public override void Init()
@@ -24,27 +37,32 @@ public class UI_CloneIcon : UI_Scene
 
         Bind<Image>(typeof(Images));
 
-        CloneStatusIcons = new Image[] {
+        ControlStatusIcons = new Image[] {
             GetImage((int)Images.Icon_main_normal),
             GetImage((int)Images.Icon_main_chain),
             GetImage((int)Images.Icon_clone_normal),
             GetImage((int)Images.Icon_clone_chain),
         };
-        UpdateCloneStatusIcon();
-
-        // 클론상태 바뀌는 이벤트에 구독
-        // ??? += UpdateCloneStatusIcon();
-        // 만약 구독하는 스크립트가 DontDestroyObject일 경우, 씬 전환 시에 해제 구독목록 초기화 할 수 있도록 SceneLoader에 장치 해주기
-
+        UpdateControlStatusIcon();
     }
 
-    void UpdateCloneStatusIcon()
+    void SwapControlStatusIcon()
     {
-        int cloneStatus = 0; // 임시작성 int cloneStatus = TempManagers.LV.cloneStatus;
-        for (int i = 0; i < CloneStatusIcons.Length; i++)
+        ControlStatusSwap = (ControlStatusSwap + 1) % 2;
+        UpdateControlStatusIcon();
+    }
+    void ChainControlStatusIcon()
+    {
+        ControlStatusChain = (ControlStatusChain + 1) % 2;
+        UpdateControlStatusIcon();
+    }
+    void UpdateControlStatusIcon()
+    {
+        int playerStatus = ControlStatusSwap*2 + ControlStatusChain;
+        for (int i = 0; i < ControlStatusIcons.Length; i++)
         {
-            if (i == cloneStatus) CloneStatusIcons[i].gameObject.SetActive(true);
-            else CloneStatusIcons[i].gameObject.SetActive(false);
+            if (i == playerStatus) ControlStatusIcons[i].gameObject.SetActive(true);
+            else ControlStatusIcons[i].gameObject.SetActive(false);
         }
     }
 }
