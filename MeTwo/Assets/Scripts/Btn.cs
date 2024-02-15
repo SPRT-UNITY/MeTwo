@@ -9,6 +9,7 @@ public class Btn : MonoBehaviour
     public bool timeLimit;
     public float timer;
     private float time;
+    public int count = 0;
 
     private void Start()
     {
@@ -31,10 +32,12 @@ public class Btn : MonoBehaviour
             timer -= Time.deltaTime;
             if(timer < 0) 
             {
+                count++;
                 btnPushed = false;
                 timer = time;
                 btnAnim.SetBool("IsPush", false);
             }
+            else btnPushed = true;
         }
     }
 
