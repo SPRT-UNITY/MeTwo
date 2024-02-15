@@ -216,9 +216,15 @@ public class PlayerController : MonoBehaviour
         else
         {
             _latestGameObject = null;
-            if (_uiInteract != null)
+            if (_uiInteract)
             {
                 TempManagers.UI.CloseDisplayUI(_uiInteract.gameObject.name);
+                // 두개 동시에 상호작용시 생기는 오류 해결용 임시 코드
+                if (_uiInteract)
+                {
+                    TempManagers.UI.CloseDisplayUI(_uiInteract.gameObject.name);
+                }
+
                 _uiInteract = null;
             }
         }
@@ -244,6 +250,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawRay(transform.position + (transform.right * 0.2f) + (Vector3.up * 0.01f), Vector3.down * 0.1f);
         Gizmos.DrawRay(transform.position + (-transform.right * 0.2f) + (Vector3.up * 0.01f), Vector3.down * 0.1f);
         
-        Gizmos.DrawRay(transform.position + (Vector3.up * 0.5f), character.forward * 0.5f);
+        Gizmos.DrawRay(transform.position + (Vector3.up * 0.5f), character.forward * 1.0f);
     }
 }
