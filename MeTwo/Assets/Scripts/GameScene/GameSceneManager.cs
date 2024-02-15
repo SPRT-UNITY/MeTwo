@@ -31,8 +31,7 @@ public class GameSceneManager : MonoBehaviour
     PlayerManager playerManager;
     GameObject stageObject;
 
-    [SerializeField]
-    Stage stage;
+    public Stage stage { get; private set; }
 
     PlayerController playerController;
     PlayerController shadowController;
