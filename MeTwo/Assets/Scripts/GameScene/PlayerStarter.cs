@@ -17,4 +17,9 @@ public class PlayerStarter : MonoBehaviour
         Gizmos.color = playerFlag == PlayerFlag.Player ? Color.green : Color.red;
         Gizmos.DrawCube(transform.position, new Vector3(1,1,1));
     }
+
+    public Vector3 GetSpawnPosition() 
+    {
+        return transform.position;
+    }
 }

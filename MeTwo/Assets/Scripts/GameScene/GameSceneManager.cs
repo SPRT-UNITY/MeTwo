@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -27,8 +28,14 @@ public class GameSceneManager : MonoBehaviour
         }
     }
 
+    PlayerManager playerManager;
     GameObject stageObject;
+
+    [SerializeField]
     Stage stage;
+
+    PlayerController playerController;
+    PlayerController shadowController;
 
     public event Action OnClearGameEvent;
 
@@ -36,12 +43,23 @@ public class GameSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        playerManager = GetComponentInChildren<PlayerManager>();
+        if(playerManager == null) 
+        {
+            GameObject prefab = Resources.Load("Prefabs/PlayerManager") as GameObject;
+            GameObject playerManagerObject = Instantiate(prefab);
+            playerManagerObject.transform.parent = transform;
+            playerManager = playerManagerObject.GetComponent<PlayerManager>();
+        }
+
+        InitGame();
     }
 
     void Start()
     {
         // 플레이어에 빙의
+        playerManager.Initialize(playerController, shadowController);
+
         // 카메라가 플레이어에 포커스
     }
 
@@ -52,14 +70,16 @@ public class GameSceneManager : MonoBehaviour
 
     public void InitGame() 
     {
-        stageObject = StageSelector.Instance.loadStage();
+        // stageObject = StageSelector.Instance.loadStage();
         stage = stage.GetComponent<Stage>();
 
-        // 플레이어 생성
-        // stage.playerStarter.transform.position
+        GameObject prefab = Resources.Load("Prefabs/Player") as GameObject;
 
-        // 분신 생성
-        // stage.shadowStarter.transform.position
+        GameObject playerObject = Instantiate(prefab, stage.playerStarter.transform.position, stage.playerStarter.transform.rotation);
+        playerController = playerObject.GetComponent<PlayerController>();
+
+        GameObject shadowObject = Instantiate(prefab, stage.shadowStarter.transform.position, stage.shadowStarter.transform.rotation);
+        shadowController = shadowObject.GetComponent<PlayerController>();
 
         SetGamePlaying();
     }
@@ -82,6 +102,6 @@ public class GameSceneManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
-        Time.fixedDeltaTime = Time.fixedTime;
+        Time.fixedDeltaTime = 0.02f;
     }
 }

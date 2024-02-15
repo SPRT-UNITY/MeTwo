@@ -13,10 +13,7 @@ public class PlayerManager : MonoBehaviour
     public Action onLeftRotateEvent;
     public Action onRightRotateEvent;
     
-    private GameObject _player;
     private PlayerController _playerController;
-    
-    private GameObject _shadow;
     private PlayerController _shadowController;
 
     // 현재 메인으로 조종하는 캐릭터
@@ -32,22 +29,17 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+
     }
 
-    private void Initialize()
+    public void Initialize(PlayerController playerController, PlayerController shadowController)
     {
-        var prefab = Resources.Load("Prefabs/Player") as GameObject;
-        
-        //TODO GameManager - Map에서 스폰 위치 받아와서 해당 위치에 instantiate
-        _player = Instantiate(prefab);
-        _playerController = _player.GetComponent<PlayerController>();
+        _playerController = playerController;
         // 방향 전환 등록
         onLeftRotateEvent += _playerController.onLeftRotateEvent;
         onRightRotateEvent += _playerController.onRightRotateEvent;
         
-        _shadow = Instantiate(prefab);
-        _shadowController = _shadow.GetComponent<PlayerController>();
+        _shadowController = shadowController;
         // 방향 전환 등록
         onLeftRotateEvent += _shadowController.onLeftRotateEvent;
         onRightRotateEvent += _shadowController.onRightRotateEvent;
