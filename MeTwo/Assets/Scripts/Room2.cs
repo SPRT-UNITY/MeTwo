@@ -5,8 +5,8 @@ using UnityEngine;
 public class Room2 : MonoBehaviour
 {
     [SerializeField] private GameObject door;
-    [SerializeField] private Button btn1;
-    [SerializeField] private Button btn2;
+    [SerializeField] private Btn btn1;
+    [SerializeField] private Btn btn2;
     private Animator anim;
     
     private void Start()

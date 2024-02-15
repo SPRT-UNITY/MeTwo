@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tut_Room1 : MonoBehaviour
 {
     [SerializeField] private GameObject door;
-    [SerializeField] private Button btn;
+    [SerializeField] private Btn btn;
     private bool doorOpening;
 
     void Update()
