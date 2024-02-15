@@ -54,8 +54,8 @@ public class UI_SettingsOnTitle : UI_Popup
         BGMIcon = GetImage((int)Images.BGMIcon);
         SFXIcon = GetImage((int)Images.SFXIcon);
 
-        MuteSprite = Resources.Load<Sprite>("Icons/mute_black");
-        UnmuteSprite = Resources.Load<Sprite>("Icons/soundPlus_black");
+        MuteSprite = Resources.Load<Sprite>("Icons/mute_white");
+        UnmuteSprite = Resources.Load<Sprite>("Icons/soundPlus_white");
 
         UpdateIcon(MasterIcon, SoundManager.Instance.isMasterMuted == true);
         UpdateIcon(BGMIcon, SoundManager.Instance.isBGMMuted == true);
