@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3672291630422129131
 MonoBehaviour:
@@ -58,12 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ccdfb7b8287d84e8393a89e9e8286c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quarterViewCameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  currentCameraDirection: 0
+  quarterViewPrefab: {fileID: 4412137767454340140, guid: 8558f1bec5bd0bf45abe4322e4f2eb54, type: 3}
+  quarterViewCameras: []
+  cameraFocus: {fileID: 0}
 --- !u!114 &3383745611009053720
 MonoBehaviour:
   m_ObjectHideFlags: 0
