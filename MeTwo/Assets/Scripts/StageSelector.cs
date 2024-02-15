@@ -63,4 +63,12 @@ public class StageSelector : MonoBehaviour
     {
         return Instantiate(StagePrefabs[currentStage].gameObject);
     }
+
+    public void DeleteStageDatas() 
+    {
+        foreach (var item in StagePrefabs) 
+        {
+            item.clearTime = 0.0f;
+        }
+    }
 }

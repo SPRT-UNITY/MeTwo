@@ -134,7 +134,7 @@ public class UI_SettingsOnTitle : UI_Popup
     {
         TempManagers.UI.ShowPopupUI<UI_Alert2Btn>(messages: new string[] { "저장된 모든 정보를 삭제합니다" }, actions: new System.Action[] { () =>
         {
-            PlayerPrefs.DeleteAll();
+            StageSelector.Instance.DeleteStageDatas();
             TempManagers.UI.ShowPopupUI<UI_Alert1Btn>(messages: new string[] { "데이터를 삭제하였습니다." });
         } });
     }
