@@ -173,31 +173,4 @@ public class UIManager : MonoBehaviour
     {
         _popupStack.Clear();
     }
-    public UI_Alert2Btn ShowAlert2BtnUI(string message, Action onOkPressed, string name = "UI_Alert2Btn")
-    {
-        UI_Alert2Btn alertPopup = TempManagers.UI.ShowPopupUI<UI_Alert2Btn>();
-        if (alertPopup != null)
-        {
-            alertPopup.SetAlert(message, onOkPressed);
-        }
-        return alertPopup;
-    }
-    public UI_Alert1Btn ShowAlert1BtnUI(string message, string name = "UI_Alert1Btn")
-    {
-        UI_Alert1Btn alertPopup = TempManagers.UI.ShowPopupUI<UI_Alert1Btn>();
-        if (alertPopup != null)
-        {
-            alertPopup.SetAlert(message);
-        }
-        return alertPopup;
-    }
-    public UI_Alert ShowAlertUI(string message, string name = "UI_Alert")
-    {
-        UI_Alert alertPopup = TempManagers.UI.ShowPopupUI<UI_Alert>();
-        if (alertPopup != null)
-        {
-            alertPopup.SetAlert(message);
-        }
-        return alertPopup;
-    }
 }
