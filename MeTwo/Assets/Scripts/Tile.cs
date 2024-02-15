@@ -6,6 +6,7 @@ public class Tile : MonoBehaviour
 {
     private Animator tileAnim;
     public bool tilePushed;
+    public bool tilePushing;
 
     private void Start()
     {
@@ -14,7 +15,7 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        if(tilePushed)
+        if(tilePushing)
         {
             tileAnim.SetBool("IsPush", true);
         }
@@ -29,6 +30,7 @@ public class Tile : MonoBehaviour
         if(other.tag == "Player")
         {
             tilePushed = true;
+            tilePushing = true;
         }
     }
 
@@ -36,7 +38,7 @@ public class Tile : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            tilePushed = false;
+            tilePushing = false;
         }
     }
 }

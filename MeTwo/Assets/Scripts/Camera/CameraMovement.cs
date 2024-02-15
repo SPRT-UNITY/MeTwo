@@ -1,23 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-public enum CameraDirection
-{
-    North = 0,
-    East,
-    West,
-    South,
-}
 
 public class CameraMovement : MonoBehaviour
 {
     public Action onCameraLeftRotationEvent;
     public Action onCameraRightRotationEvent;
 
+    public GameObject quarterViewPrefab;
     public List<GameObject> quarterViewCameras;
-    public CameraDirection currentCameraDirection;
+    public TrackingPlayer cameraFocus;
     private int _currentCamera;
 
     private void Awake()
@@ -25,18 +20,22 @@ public class CameraMovement : MonoBehaviour
         onCameraLeftRotationEvent += LeftRotateCamera;
         onCameraRightRotationEvent += RightRotateCamera;
         _currentCamera = 0;
-        currentCameraDirection = (CameraDirection)_currentCamera;
     }
 
-    public void Initialize(List<GameObject> camerasInfo)
+    private void Start()
     {
-        // 기존 카메라 비활성화
-        if(quarterViewCameras.Count != 0)
-            quarterViewCameras[_currentCamera].SetActive(false);
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        var go = Instantiate(quarterViewPrefab);
+        quarterViewCameras = go.GetComponentsInChildren<CinemachineVirtualCamera>().Select(o => o.gameObject).ToList();
         
-        quarterViewCameras = camerasInfo;
-        if(quarterViewCameras.Count != 0)
-            quarterViewCameras[_currentCamera].SetActive(true);
+        for (var i = 0; i < quarterViewCameras.Count; i++)
+        {
+            quarterViewCameras[i].SetActive(i == _currentCamera);
+        }
     }
     
     private void LeftRotateCamera()
@@ -48,8 +47,6 @@ public class CameraMovement : MonoBehaviour
         _currentCamera = (_currentCamera - 1) % quarterViewCameras.Count;
         if (_currentCamera < 0)
             _currentCamera = quarterViewCameras.Count - 1;
-
-        currentCameraDirection = (CameraDirection)_currentCamera;
         
         quarterViewCameras[_currentCamera].SetActive(true);
     }
@@ -62,7 +59,6 @@ public class CameraMovement : MonoBehaviour
         quarterViewCameras[_currentCamera].SetActive(false);
         
         _currentCamera = (_currentCamera + 1) % quarterViewCameras.Count;
-        currentCameraDirection = (CameraDirection)_currentCamera;
         
         quarterViewCameras[_currentCamera].SetActive(true);
     }
