@@ -90,12 +90,15 @@ public class LevelManager : MonoBehaviour
         {
             case 0:
                 TempManagers.LV.scoreFloor0 = GameSceneManager.Instance.stage.clearTime;
+                Debug.Log($"{TempManagers.LV.nowEnter}: {TempManagers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
                 break;
             case 1:
                 TempManagers.LV.scoreFloor1 = GameSceneManager.Instance.stage.clearTime;
+                Debug.Log($"{TempManagers.LV.nowEnter}: {TempManagers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
                 break;
             case 2:
                 TempManagers.LV.scoreFloor2 = GameSceneManager.Instance.stage.clearTime;
+                Debug.Log($"{TempManagers.LV.nowEnter}: {TempManagers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
                 break;
         }
         TempManagers.LV.canEnter = (TempManagers.LV.canEnter == TempManagers.LV.nowEnter) ? TempManagers.LV.canEnter + 1 : TempManagers.LV.canEnter;

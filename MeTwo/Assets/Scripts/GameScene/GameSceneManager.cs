@@ -40,6 +40,11 @@ public class GameSceneManager : MonoBehaviour
 
     float gameTime;
 
+    bool isCleared = false;
+
+    public bool GetIsCleared() { return isCleared; }
+    
+
     private void Awake()
     {
         playerManager = GetComponentInChildren<PlayerManager>();
@@ -84,6 +89,7 @@ public class GameSceneManager : MonoBehaviour
     public void ClearGame()
     {
         stage.clearTime = gameTime;
+        isCleared = true;
         OnClearGameEvent.Invoke();
     }
 
