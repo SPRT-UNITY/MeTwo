@@ -210,4 +210,22 @@ public class PlayerManager : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
             onRightRotateEvent?.Invoke();
     }
+    public void CallPauseEvent(InputAction.CallbackContext context) // 왠지 로그가 세개씩 뜨긴 하는데 아무렴 어떤가
+    {
+        Debug.Log($"CallPauseEvent 작동함, 현재 PopupStack수 : {TempManagers.UI.GetPopStackCount()}");
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (TempManagers.UI.GetPopStackCount() > 0)
+            {
+                TempManagers.UI.ClosePopupUI();
+                if (TempManagers.UI.GetPopStackCount() == 0)
+                    TempManagers.SetStatePlaying();
+            }
+            else
+            {
+                TempManagers.UI.ShowPopupUI<UI_Pause>();
+                TempManagers.SetStatePause();
+            }
+        }
+    }
 }

@@ -47,9 +47,9 @@ public class UI_Pause : UI_Popup
     {
         SceneManager.LoadScene(0);
     }
-    public void OnDestroy() // 파괴 시 재개
+    public void OnDestroy()
     {
-        //TempManagers.SetStatePlaying();
+        TempManagers.SetStatePlaying();
     }
 
 }

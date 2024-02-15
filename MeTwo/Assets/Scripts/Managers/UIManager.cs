@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 public class UIManager : MonoBehaviour
@@ -22,6 +23,11 @@ public class UIManager : MonoBehaviour
                 root = new GameObject { name = "@UI_Root" };
             return root;
         }
+    }
+
+    public int GetPopStackCount()
+    {
+        return _popupStack.Count;
     }
 
     // 외부에서 Popup같은 UI의 생성과 동시에, UIManager에게 SetCanvas를 요청하여 order 부여받음
@@ -173,4 +179,5 @@ public class UIManager : MonoBehaviour
     {
         _popupStack.Clear();
     }
+
 }
