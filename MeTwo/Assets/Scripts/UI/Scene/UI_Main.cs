@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UI_Main : UI_Scene
@@ -20,6 +21,7 @@ public class UI_Main : UI_Scene
 
         Bind<Button>(typeof(Buttons));
         GetButton((int)Buttons.PauseBtn).onClick.AddListener(OnClickPause); // 일시정지 이벤트
+
     }
 
     void OnClickPause()
