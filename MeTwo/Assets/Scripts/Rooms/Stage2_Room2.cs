@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room2 : MonoBehaviour
+public class Stage2_Room2 : MonoBehaviour
 {
     [SerializeField] private GameObject door;
     [SerializeField] private Btn btn1;
     [SerializeField] private Btn btn2;
+    
     private Animator anim;
     
     private void Start()
@@ -16,7 +17,7 @@ public class Room2 : MonoBehaviour
 
     void Update()
     {
-        if(btn1.btnPushed && btn2.btnPushed)
+        if(btn1.count >= 3 && btn2.count >=6)
         {
             DoorOpen();
         }
