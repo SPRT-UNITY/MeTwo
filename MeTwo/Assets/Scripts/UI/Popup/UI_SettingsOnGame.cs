@@ -101,7 +101,7 @@ public class UI_SettingsOnGame : UI_Popup
     }
     void OnClickClose()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void UpdateIcon(Image icon, bool isMuted)
     {

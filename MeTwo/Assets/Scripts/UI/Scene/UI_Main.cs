@@ -43,7 +43,7 @@ public class UI_Main : UI_Scene
 
     void OnClickPause()
     {
-        TempManagers.UI.ShowPopupUI<UI_Pause>();
-        TempManagers.SetStatePause();
+        Managers.UI.ShowPopupUI<UI_Pause>();
+        Managers.SetStatePause();
     }
 }

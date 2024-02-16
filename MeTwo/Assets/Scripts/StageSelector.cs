@@ -68,7 +68,7 @@ public class StageSelector : MonoBehaviour
     public GameObject loadStage() 
     {
         // 아래 한 줄 임시조치
-        SelectStage(TempManagers.LV.nowEnter);
+        SelectStage(Managers.LV.nowEnter);
         // 이름에 (Clone) 안 붙도록 수정
         GameObject instance = Instantiate(StagePrefabs[currentStage].gameObject);
         instance.name = instance.name.Replace("(Clone)", "");

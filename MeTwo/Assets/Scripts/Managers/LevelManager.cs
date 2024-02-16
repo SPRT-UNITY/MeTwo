@@ -86,22 +86,22 @@ public class LevelManager : MonoBehaviour
 
     public void saveCustomPlayerPrefs()
     {
-        switch (TempManagers.LV.nowEnter)
+        switch (Managers.LV.nowEnter)
         {
             case 0:
-                TempManagers.LV.scoreFloor0 = GameSceneManager.Instance.stage.clearTime;
-                Debug.Log($"{TempManagers.LV.nowEnter}: {TempManagers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
+                Managers.LV.scoreFloor0 = GameSceneManager.Instance.stage.clearTime;
+                Debug.Log($"{Managers.LV.nowEnter}: {Managers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
                 break;
             case 1:
-                TempManagers.LV.scoreFloor1 = GameSceneManager.Instance.stage.clearTime;
-                Debug.Log($"{TempManagers.LV.nowEnter}: {TempManagers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
+                Managers.LV.scoreFloor1 = GameSceneManager.Instance.stage.clearTime;
+                Debug.Log($"{Managers.LV.nowEnter}: {Managers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
                 break;
             case 2:
-                TempManagers.LV.scoreFloor2 = GameSceneManager.Instance.stage.clearTime;
-                Debug.Log($"{TempManagers.LV.nowEnter}: {TempManagers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
+                Managers.LV.scoreFloor2 = GameSceneManager.Instance.stage.clearTime;
+                Debug.Log($"{Managers.LV.nowEnter}: {Managers.LV.scoreFloor0}: {GameSceneManager.Instance.stage.clearTime}");
                 break;
         }
-        TempManagers.LV.canEnter = (TempManagers.LV.canEnter == TempManagers.LV.nowEnter) ? TempManagers.LV.canEnter + 1 : TempManagers.LV.canEnter;
+        Managers.LV.canEnter = (Managers.LV.canEnter == Managers.LV.nowEnter) ? Managers.LV.canEnter + 1 : Managers.LV.canEnter;
     }
 
     // 랭크 매기기 메서드. 이후 필요하면 업데이트

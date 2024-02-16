@@ -61,8 +61,8 @@ public class UI_SelectStage : UI_Popup
             GetImage((int)Images.BlockStage2),
             GetImage((int)Images.BlockStageN),
         };
-        int canEnter = TempManagers.LV.canEnter;
-        int limEnter = TempManagers.LV.limEnter;
+        int canEnter = Managers.LV.canEnter;
+        int limEnter = Managers.LV.limEnter;
         //for (int i=0; i<= (canEnter<limEnter?canEnter:limEnter); i++)
         //{
         //    Blocks[i].gameObject.SetActive(false);
@@ -97,23 +97,23 @@ public class UI_SelectStage : UI_Popup
         };
 
         // 현재 선택된 스테이지 초기화
-        TempManagers.LV.nowEnter = -1;
+        Managers.LV.nowEnter = -1;
 
     }
     void OnClickClose()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void OnClickEnter()
     {
-        if(TempManagers.LV.nowEnter != -1)
+        if(Managers.LV.nowEnter != -1)
             SceneManager.LoadScene(1);
 
         SoundManager.Instance.PlaySFX("UISelect");
     }
     void OnClickStage(int num)
     {
-        TempManagers.LV.nowEnter = num;
+        Managers.LV.nowEnter = num;
         CheckSelectStage(num);
 
         SoundManager.Instance.PlaySFX("UISelect");

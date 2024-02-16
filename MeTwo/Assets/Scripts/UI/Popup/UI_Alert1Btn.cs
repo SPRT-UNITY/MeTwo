@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 호출 예시
-// TempManagers.UI.ShowPopupUI<UI_Alert1Btn>(messages: new string[] { "데이터를 삭제하였습니다." });
+// Managers.UI.ShowPopupUI<UI_Alert1Btn>(messages: new string[] { "데이터를 삭제하였습니다." });
 
 public class UI_Alert1Btn : UI_Popup
 {
@@ -39,10 +39,10 @@ public class UI_Alert1Btn : UI_Popup
     }
     void OnClickClose()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void OnClickOk()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
 }
