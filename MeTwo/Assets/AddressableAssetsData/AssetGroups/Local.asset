@@ -47,6 +47,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - SFX
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cebe5ef59f447d4d803665e3ecf1a2f
+    m_Address: Assets/Sounds/BGM/Main.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BGM
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce2bdc71de8221046b5109f02c551f46
+    m_Address: Assets/Sounds/BGM/Sci-Fi.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BGM
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4042db6638969ef4a84401a39f48f9a2, type: 2}
   m_SchemaSet:
