@@ -41,6 +41,8 @@ public class SceneLoader : MonoBehaviour
             TempManagers.LV.nowEnter = -1;
             TempManagers.UI.ShowSceneUI<UI_TitleMenu>();
             TempManagers.SetStateTitle();
+
+            SoundManager.Instance.PlayBGM("Main");
         }
     }
     #endregion
