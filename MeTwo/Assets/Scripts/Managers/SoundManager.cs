@@ -194,6 +194,14 @@ public class SoundManager : MonoBehaviour
         bgmSource.Play();
     }
 
+    public void PlayBGM(AudioClip clip) 
+    {
+        bgmClip = clip;
+        bgmSource?.Stop();
+        bgmSource.clip = bgmClip;
+        bgmSource.Play();
+    }
+
     public void PauseBGM()
     {
         bgmSource?.Pause();

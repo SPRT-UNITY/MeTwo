@@ -108,11 +108,15 @@ public class UI_SelectStage : UI_Popup
     {
         if(TempManagers.LV.nowEnter != -1)
             SceneManager.LoadScene(1);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void OnClickStage(int num)
     {
         TempManagers.LV.nowEnter = num;
         CheckSelectStage(num);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void CheckSelectStage(int num)
     {

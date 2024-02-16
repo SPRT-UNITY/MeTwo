@@ -8,6 +8,7 @@ public class Stage : MonoBehaviour
     public PlayerStarter playerStarter;
     public PlayerStarter shadowStarter;
     public ClearObject clearObject;
+    public AudioClip stageBGM;
 
     private float _clearTime;
 

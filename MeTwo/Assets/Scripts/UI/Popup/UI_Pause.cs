@@ -37,6 +37,7 @@ public class UI_Pause : UI_Popup
     }
     void OnClickResetStage()
     {
+        SoundManager.Instance.PlaySFX("UISelect");
         SceneManager.LoadScene(1);
     }
     void OnClickSettings()
@@ -45,6 +46,7 @@ public class UI_Pause : UI_Popup
     }
     void OnClickBackTitle()
     {
+        SoundManager.Instance.PlaySFX("UISelect");
         SceneManager.LoadScene(0);
     }
     public void OnDestroy()

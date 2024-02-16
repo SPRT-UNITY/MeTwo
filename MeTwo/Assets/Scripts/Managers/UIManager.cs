@@ -140,6 +140,8 @@ public class UIManager : MonoBehaviour
         popup.Initialize(messages, actions);
         _popupStack.Push(popup);
 
+        SoundManager.Instance.PlaySFX("UISelect");
+
         return popup;
     }
 
@@ -156,6 +158,9 @@ public class UIManager : MonoBehaviour
             Debug.Log("Close Popup Failed!");
             return;
         }
+
+        SoundManager.Instance.PlaySFX("UIClose");
+
         ClosePopupUI();
     }
     public void ClosePopupUI()
@@ -169,9 +174,14 @@ public class UIManager : MonoBehaviour
         Destroy(popup.gameObject);
         popup = null;
         _order--;
+
+
+        SoundManager.Instance.PlaySFX("UIClose");
     }
     public void CloseAllPopupUI()
     {
+        SoundManager.Instance.PlaySFX("UIClose");
+
         while (_popupStack.Count > 0)
             ClosePopupUI();
     }
