@@ -110,22 +110,25 @@ public class UI_SettingsOnGame : UI_Popup
     void ToggleMasterMute()
     {
         bool isMuted = SoundManager.Instance.isMasterMuted;
-        SoundManager.Instance.PlaySFX("UISelect");
         SoundManager.Instance.isMasterMuted = !isMuted;
         UpdateIcon(MasterIcon, !isMuted);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void ToggleBGMMute()
     {
         bool isMuted = SoundManager.Instance.isBGMMuted;
-        SoundManager.Instance.PlaySFX("UISelect");
         SoundManager.Instance.isBGMMuted = !isMuted;
         UpdateIcon(BGMIcon, !isMuted);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void ToggleSFXMute()
     {
         bool isMuted = SoundManager.Instance.isSFXMuted;
-        SoundManager.Instance.PlaySFX("UISelect");
         SoundManager.Instance.isSFXMuted = !isMuted;
         UpdateIcon(SFXIcon, !isMuted);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
 }
