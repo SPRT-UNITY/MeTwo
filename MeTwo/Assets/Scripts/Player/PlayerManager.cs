@@ -13,16 +13,23 @@ public class PlayerManager : MonoBehaviour
     public Action onLeftRotateEvent;
     public Action onRightRotateEvent;
     
-    private PlayerController _playerController;
-    private PlayerController _shadowController;
+    public PlayerController playerController;
+    public PlayerController shadowController;
 
     // 현재 메인으로 조종하는 캐릭터
     private PlayerController _currentPlayerController;
     // 동시 조종 중 체크
-    private bool _isBoth;
+    public bool isBoth;
+
+    public static PlayerManager Instance { get; private set; }
 
     private void Awake()
     {
+        if(Instance == null)
+            Instance = this;
+        else
+            Destroy(this.gameObject);
+        
         onBothCharacterControlEvent += ToggleBothCharacterControl;
         onSwapCharacterEvent += SwapCharacter;
     }
@@ -34,19 +41,19 @@ public class PlayerManager : MonoBehaviour
 
     public void Initialize(PlayerController playerController, PlayerController shadowController)
     {
-        _playerController = playerController;
+        this.playerController = playerController;
         // 방향 전환 등록
-        onLeftRotateEvent += _playerController.onLeftRotateEvent;
-        onRightRotateEvent += _playerController.onRightRotateEvent;
+        onLeftRotateEvent += this.playerController.onLeftRotateEvent;
+        onRightRotateEvent += this.playerController.onRightRotateEvent;
         
-        _shadowController = shadowController;
+        this.shadowController = shadowController;
         // 방향 전환 등록
-        onLeftRotateEvent += _shadowController.onLeftRotateEvent;
-        onRightRotateEvent += _shadowController.onRightRotateEvent;
+        onLeftRotateEvent += this.shadowController.onLeftRotateEvent;
+        onRightRotateEvent += this.shadowController.onRightRotateEvent;
         
         // 메인 캐릭터 설정
-        _currentPlayerController = _playerController;
-        _isBoth = false;
+        _currentPlayerController = this.playerController;
+        isBoth = false;
         
         SubscribePlayerAction();
     }
@@ -54,10 +61,10 @@ public class PlayerManager : MonoBehaviour
     // 동시조종 Method
     private void ToggleBothCharacterControl()
     {
-        if (_isBoth)
+        if (isBoth)
         {
             // 동시 조종 해제
-            _isBoth = false;
+            isBoth = false;
             UnsubscribePlayerAction(true);
         }
         else
@@ -66,7 +73,7 @@ public class PlayerManager : MonoBehaviour
             // CheckShadowActive();
             
             // 동시 조종 시작
-            _isBoth = true;
+            isBoth = true;
             SubscribePlayerAction(true);
         }
     }
@@ -78,17 +85,17 @@ public class PlayerManager : MonoBehaviour
         // CheckShadowActive();
         
         // 동시 조종 중이면 remove하지 않음
-        if (!_isBoth)
+        if (!isBoth)
             UnsubscribePlayerAction();
         
         // 카메라 조정 및 메인 캐릭터 변경
         //ToggleVirtualCamera(false);
         //_currentPlayerController.ResetCamera();
-        _currentPlayerController = _currentPlayerController == _playerController ? _shadowController : _playerController;
+        _currentPlayerController = _currentPlayerController == playerController ? shadowController : playerController;
         //ToggleVirtualCamera(true);
         
         // 동시 조종 중이면 Add하지 않음
-        if (!_isBoth)
+        if (!isBoth)
             SubscribePlayerAction();
     }
 
@@ -126,7 +133,7 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerController playerController;
         if (isBoth)
-            playerController = _currentPlayerController == _playerController ? _shadowController : _playerController;
+            playerController = _currentPlayerController == this.playerController ? shadowController : this.playerController;
         else
             playerController = _currentPlayerController;
         
@@ -141,7 +148,7 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerController playerController;
         if (isBoth)
-            playerController = _currentPlayerController == _playerController ? _shadowController : _playerController;
+            playerController = _currentPlayerController == this.playerController ? shadowController : this.playerController;
         else
             playerController = _currentPlayerController;
         
@@ -210,22 +217,22 @@ public class PlayerManager : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
             onRightRotateEvent?.Invoke();
     }
-    public void CallPauseEvent(InputAction.CallbackContext context) // 왠지 로그가 세개씩 뜨긴 하는데 아무렴 어떤가
-    {
-        //Debug.Log($"CallPauseEvent 작동함, 현재 PopupStack수 : {TempManagers.UI.GetPopStackCount()}");
-        if (context.phase == InputActionPhase.Started)
-        {
-            if (TempManagers.UI.GetPopStackCount() > 0)
-            {
-                TempManagers.UI.ClosePopupUI();
-                if (TempManagers.UI.GetPopStackCount() == 0)
-                    TempManagers.SetStatePlaying();
-            }
-            else
-            {
-                TempManagers.UI.ShowPopupUI<UI_Pause>();
-                TempManagers.SetStatePause();
-            }
-        }
-    }
+    //public void CallPauseEvent(InputAction.CallbackContext context) // 왠지 로그가 세개씩 뜨긴 하는데 아무렴 어떤가
+    //{
+    //    Debug.Log($"CallPauseEvent 작동함, 현재 PopupStack수 : {TempManagers.UI.GetPopStackCount()}");
+    //    if (context.phase == InputActionPhase.Started)
+    //    {
+    //        if (TempManagers.UI.GetPopStackCount() > 0)
+    //        {
+    //            TempManagers.UI.ClosePopupUI();
+    //            if (TempManagers.UI.GetPopStackCount() == 0)
+    //                TempManagers.SetStatePlaying();
+    //        }
+    //        else
+    //        {
+    //            TempManagers.UI.ShowPopupUI<UI_Pause>();
+    //            TempManagers.SetStatePause();
+    //        }
+    //    }
+    //}
 }

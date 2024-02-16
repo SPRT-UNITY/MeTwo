@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StageSelector : MonoBehaviour
@@ -38,9 +39,14 @@ public class StageSelector : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         StagePrefabs = Resources.LoadAll<Stage>("Prefabs/Stages/");
+        StagePrefabs = StagePrefabs.OrderBy(stage => stage.name).ToArray();
 
         // 임시로 바로 0으로 지정하게 하였음
-        currentStage = 0;
+        //currentStage = 0;
+        foreach (var stage in StagePrefabs)
+        {
+            Debug.Log(stage.name);
+        }
     }
 
     // Start is called before the first frame update
@@ -61,7 +67,12 @@ public class StageSelector : MonoBehaviour
 
     public GameObject loadStage() 
     {
-        return Instantiate(StagePrefabs[currentStage].gameObject);
+        // 아래 한 줄 임시조치
+        SelectStage(TempManagers.LV.nowEnter);
+        // 이름에 (Clone) 안 붙도록 수정
+        GameObject instance = Instantiate(StagePrefabs[currentStage].gameObject);
+        instance.name = instance.name.Replace("(Clone)", "");
+        return instance;
     }
 
     public void DeleteStageDatas() 

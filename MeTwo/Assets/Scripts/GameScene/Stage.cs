@@ -8,6 +8,7 @@ public class Stage : MonoBehaviour
     public PlayerStarter playerStarter;
     public PlayerStarter shadowStarter;
     public ClearObject clearObject;
+    public AudioClip stageBGM;
 
     private float _clearTime;
 
@@ -17,6 +18,7 @@ public class Stage : MonoBehaviour
         set 
         { 
             _clearTime = value;
+            Debug.Log(transform.root.name);
             PlayerPrefs.SetFloat(transform.root.name, _clearTime);
         } 
     }

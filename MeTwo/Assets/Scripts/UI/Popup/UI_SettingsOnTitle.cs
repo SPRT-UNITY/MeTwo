@@ -54,8 +54,8 @@ public class UI_SettingsOnTitle : UI_Popup
         BGMIcon = GetImage((int)Images.BGMIcon);
         SFXIcon = GetImage((int)Images.SFXIcon);
 
-        MuteSprite = Resources.Load<Sprite>("Icons/mute_black");
-        UnmuteSprite = Resources.Load<Sprite>("Icons/soundPlus_black");
+        MuteSprite = Resources.Load<Sprite>("Icons/mute_white");
+        UnmuteSprite = Resources.Load<Sprite>("Icons/soundPlus_white");
 
         UpdateIcon(MasterIcon, SoundManager.Instance.isMasterMuted == true);
         UpdateIcon(BGMIcon, SoundManager.Instance.isBGMMuted == true);
@@ -102,6 +102,8 @@ public class UI_SettingsOnTitle : UI_Popup
         SoundManager.Instance.sfxVolumeScale = sfxVolume;
         PlayerPrefs.SetFloat("DPI", dpiValue); // DPI 임시구현
 
+        SoundManager.Instance.PlaySFX("UISelect");
+
         Debug.Log($"saved: Master Volume = {masterVolume}, BGM Volume = {bgmVolume}, SFX Volume = {sfxVolume}, DPI = {dpiValue}");
     }
     void UpdateIcon(Image icon, bool isMuted)
@@ -113,18 +115,24 @@ public class UI_SettingsOnTitle : UI_Popup
         bool isMuted = SoundManager.Instance.isMasterMuted;
         SoundManager.Instance.isMasterMuted = !isMuted;
         UpdateIcon(MasterIcon, !isMuted);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void ToggleBGMMute()
     {
         bool isMuted = SoundManager.Instance.isBGMMuted;
         SoundManager.Instance.isBGMMuted = !isMuted;
         UpdateIcon(BGMIcon, !isMuted);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void ToggleSFXMute()
     {
         bool isMuted = SoundManager.Instance.isSFXMuted;
         SoundManager.Instance.isSFXMuted = !isMuted;
         UpdateIcon(SFXIcon, !isMuted);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void OnClickClose()
     {

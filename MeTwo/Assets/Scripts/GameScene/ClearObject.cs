@@ -7,6 +7,8 @@ public class ClearObject : MonoBehaviour
 {
     BoxCollider boxCollider;
 
+    bool isCleared = false;
+
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -23,9 +25,10 @@ public class ClearObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player") && !isCleared) 
         {
             GameSceneManager.Instance.ClearGame();
+            isCleared = true;
         }
     }
 }

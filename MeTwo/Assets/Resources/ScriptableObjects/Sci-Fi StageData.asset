@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eededec57f8b6a47b8cd23d960ce903, type: 3}
+  m_Name: Sci-Fi StageData
+  m_EditorClassIdentifier: 
+  sectorNum: 3
+  stagePrefab: {fileID: 2783234787125358123, guid: 478f967d7810b4b44829aa707ca8f34b, type: 3}

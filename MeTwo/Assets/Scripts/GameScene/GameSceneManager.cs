@@ -40,6 +40,11 @@ public class GameSceneManager : MonoBehaviour
 
     float gameTime;
 
+    bool isCleared = false;
+
+    public bool GetIsCleared() { return isCleared; }
+    
+
     private void Awake()
     {
         playerManager = GetComponentInChildren<PlayerManager>();
@@ -70,6 +75,11 @@ public class GameSceneManager : MonoBehaviour
         stageObject = StageSelector.Instance.loadStage();
         stage = stageObject.GetComponent<Stage>();
 
+        if (stage.stageBGM == null)
+            SoundManager.Instance.PlayBGM("Main");
+        else
+            SoundManager.Instance.PlayBGM(stage.stageBGM);
+
         GameObject prefab = Resources.Load("Prefabs/Player") as GameObject;
 
         GameObject playerObject = Instantiate(prefab, stage.playerStarter.transform.position, stage.playerStarter.transform.rotation);
@@ -84,6 +94,7 @@ public class GameSceneManager : MonoBehaviour
     public void ClearGame()
     {
         stage.clearTime = gameTime;
+        isCleared = true;
         OnClearGameEvent.Invoke();
     }
 

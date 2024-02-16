@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.Content;
+using TMPro;
 
 public class UI_SelectStage : UI_Popup
 {
@@ -26,6 +27,13 @@ public class UI_SelectStage : UI_Popup
         CheckMark2,
         CheckMarkN,
     }
+    enum TextMeshProUGUIs
+    {
+        ScoreText_Stage0,
+        ScoreText_Stage1,
+        ScoreText_Stage2,
+        ScoreText_StageN,
+    }
     Image[] CheckMarks;
     void Start()
     {
@@ -37,6 +45,7 @@ public class UI_SelectStage : UI_Popup
 
         Bind<Button>(typeof(Buttons));
         Bind<Image>(typeof(Images));
+        Bind<TextMeshProUGUI>(typeof(TextMeshProUGUIs));
 
         GetButton((int)Buttons.CloseBtn).onClick.AddListener(OnClickClose); // 닫기 버튼 이벤트
         GetButton((int)Buttons.EnterBtn).onClick.AddListener(OnClickEnter); // 입장 버튼 이벤트
@@ -54,10 +63,30 @@ public class UI_SelectStage : UI_Popup
         };
         int canEnter = TempManagers.LV.canEnter;
         int limEnter = TempManagers.LV.limEnter;
-        for (int i=0; i<= (canEnter<limEnter?canEnter:limEnter); i++)
+        //for (int i=0; i<= (canEnter<limEnter?canEnter:limEnter); i++)
+        //{
+        //    Blocks[i].gameObject.SetActive(false);
+        //}
+        for (int i = 1; i <= limEnter && PlayerPrefs.GetFloat($"Stage{(i-1).ToString()}", 0f) > 0f; i++)
         {
             Blocks[i].gameObject.SetActive(false);
         }
+
+        // 최고 점수 표시
+        int score;
+        //PlayerPrefs.SetFloat("ScoreFloor0", 1f);
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloor0", 0f);
+        score = (int)PlayerPrefs.GetFloat("Stage0", 0f);
+        GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_Stage0).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloor1", 0f);
+        score = (int)PlayerPrefs.GetFloat("Stage1", 0f);
+        GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_Stage1).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloor2", 0f);
+        score = (int)PlayerPrefs.GetFloat("Stage2", 0f);
+        GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_Stage2).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
+        //score = (int)PlayerPrefs.GetFloat("ScoreFloorN", 0f);
+        score = (int)PlayerPrefs.GetFloat("StageN", 0f);
+        GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText_StageN).text = (score > 0) ? $"{(score / 60).ToString("00")}:{(score % 60).ToString("00")}" : "";
 
         // 체크마크 목록
         CheckMarks = new Image[] {
@@ -79,11 +108,15 @@ public class UI_SelectStage : UI_Popup
     {
         if(TempManagers.LV.nowEnter != -1)
             SceneManager.LoadScene(1);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void OnClickStage(int num)
     {
         TempManagers.LV.nowEnter = num;
         CheckSelectStage(num);
+
+        SoundManager.Instance.PlaySFX("UISelect");
     }
     void CheckSelectStage(int num)
     {

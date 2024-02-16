@@ -30,6 +30,7 @@ public class SceneLoader : MonoBehaviour
             GameSceneManager.Instance.InitGame();
             TempManagers.SetStatePlaying();
 
+            // 클리어 UI 관련
             GameSceneManager.Instance.ResetOnClearGameEvent();
             GameSceneManager.Instance.OnClearGameEvent += (() => TempManagers.UI.ShowPopupUI<UI_Clear>());
             GameSceneManager.Instance.OnClearGameEvent += TempManagers.SetStatePause;
@@ -40,6 +41,8 @@ public class SceneLoader : MonoBehaviour
             TempManagers.LV.nowEnter = -1;
             TempManagers.UI.ShowSceneUI<UI_TitleMenu>();
             TempManagers.SetStateTitle();
+
+            SoundManager.Instance.PlayBGM("Main");
         }
     }
     #endregion

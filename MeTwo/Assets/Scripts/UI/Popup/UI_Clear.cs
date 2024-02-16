@@ -37,21 +37,22 @@ public class UI_Clear : UI_Popup
 
         // 점수관련한 처리에 대한 호출은 어디서 할지 추후 생각.
         // 일단 여기서는 화면에 보여주기만 하면 될 듯.
-        switch(TempManagers.LV.nowEnter)
-        {
-            case 0:
-                //Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor0}</b>초";
-                Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{GameSceneManager.Instance.stage.clearTime}</b>초";
-                break;
-            case 1:
-                //Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor1}</b>초";
-                Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{GameSceneManager.Instance.stage.clearTime}</b>초";
-                break;
-            case 2:
-                //Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor2}</b>초";
-                Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{GameSceneManager.Instance.stage.clearTime}</b>초";
-                break;
-        }
+
+        int clearSec = (int)GameSceneManager.Instance.stage.clearTime;
+        string clearMS= $"{(clearSec / 60).ToString("00")}분 {(clearSec % 60).ToString("00")}초";
+        GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{clearMS}</b>";
+        //switch (TempManagers.LV.nowEnter)
+        //{
+        //    case 0:
+        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor0}</b>초";
+        //        break;
+        //    case 1:
+        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor1}</b>초";
+        //        break;
+        //    case 2:
+        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor2}</b>초";
+        //        break;
+        //}
     }
     void OnClickBackTitle()
     {
