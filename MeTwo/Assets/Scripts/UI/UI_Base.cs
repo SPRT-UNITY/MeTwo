@@ -65,7 +65,7 @@ public class UI_Base : MonoBehaviour
 
     public static void AddUIEvent(GameObject go, Action<PointerEventData> action, UIEvent type = UIEvent.Click)
     {
-        UI_EventHandler evt = TempManagers.UI.GetOrAddComponent<UI_EventHandler>(go);
+        UI_EventHandler evt = Managers.UI.GetOrAddComponent<UI_EventHandler>(go);
         switch (type)
         {
             case UIEvent.Click:

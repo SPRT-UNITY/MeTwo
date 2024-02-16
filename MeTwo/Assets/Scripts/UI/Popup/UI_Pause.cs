@@ -33,7 +33,7 @@ public class UI_Pause : UI_Popup
 
     void OnClickClose()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void OnClickResetStage()
     {
@@ -42,7 +42,7 @@ public class UI_Pause : UI_Popup
     }
     void OnClickSettings()
     {
-        TempManagers.UI.ShowPopupUI<UI_SettingsOnGame>();
+        Managers.UI.ShowPopupUI<UI_SettingsOnGame>();
     }
     void OnClickBackTitle()
     {
@@ -51,7 +51,7 @@ public class UI_Pause : UI_Popup
     }
     public void OnDestroy()
     {
-        TempManagers.SetStatePlaying();
+        Managers.SetStatePlaying();
     }
 
 }

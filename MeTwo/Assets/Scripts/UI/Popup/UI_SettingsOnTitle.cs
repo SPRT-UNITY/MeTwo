@@ -136,14 +136,14 @@ public class UI_SettingsOnTitle : UI_Popup
     }
     void OnClickClose()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void OnClickResetData()
     {
-        TempManagers.UI.ShowPopupUI<UI_Alert2Btn>(messages: new string[] { "저장된 모든 정보를 삭제합니다" }, actions: new System.Action[] { () =>
+        Managers.UI.ShowPopupUI<UI_Alert2Btn>(messages: new string[] { "저장된 모든 정보를 삭제합니다" }, actions: new System.Action[] { () =>
         {
             StageSelector.Instance.DeleteStageDatas();
-            TempManagers.UI.ShowPopupUI<UI_Alert1Btn>(messages: new string[] { "데이터를 삭제하였습니다." });
+            Managers.UI.ShowPopupUI<UI_Alert1Btn>(messages: new string[] { "데이터를 삭제하였습니다." });
         } });
     }
 }

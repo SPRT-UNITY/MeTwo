@@ -10,12 +10,12 @@ public class UI_Popup : UI_Base
 
     public virtual void Init()
     {
-        TempManagers.UI.SetCanvas(gameObject, true);
+        Managers.UI.SetCanvas(gameObject, true);
     }
 
     public virtual void ClosePopupUI()
     {
-        TempManagers.UI.ClosePopupUI(this);
+        Managers.UI.ClosePopupUI(this);
     }
     public void Initialize(string[] _messages, Action[] _actions)
     {

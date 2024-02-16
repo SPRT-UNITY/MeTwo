@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 // 클리어 시, 점수반영 로직 및 아래와 같이 Popup
-// TempManagers.UI.ShowPopupUI<UI_Clear>();
+// Managers.UI.ShowPopupUI<UI_Clear>();
 
 public class UI_Clear : UI_Popup
 {
@@ -41,16 +41,16 @@ public class UI_Clear : UI_Popup
         int clearSec = (int)GameSceneManager.Instance.stage.clearTime;
         string clearMS= $"{(clearSec / 60).ToString("00")}분 {(clearSec % 60).ToString("00")}초";
         GetTextMeshProUGUI((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{clearMS}</b>";
-        //switch (TempManagers.LV.nowEnter)
+        //switch (Managers.LV.nowEnter)
         //{
         //    case 0:
-        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor0}</b>초";
+        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{Managers.LV.scoreFloor0}</b>초";
         //        break;
         //    case 1:
-        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor1}</b>초";
+        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{Managers.LV.scoreFloor1}</b>초";
         //        break;
         //    case 2:
-        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{TempManagers.LV.scoreFloor2}</b>초";
+        //        Get<Text>((int)TextMeshProUGUIs.ScoreText).text = $"걸린 시간 : <b>{Managers.LV.scoreFloor2}</b>초";
         //        break;
         //}
     }
@@ -60,7 +60,7 @@ public class UI_Clear : UI_Popup
     }
     void OnClickNextStage()
     {
-        TempManagers.LV.nowEnter += 1;
+        Managers.LV.nowEnter += 1;
         SceneManager.LoadScene(1);
     }
 }

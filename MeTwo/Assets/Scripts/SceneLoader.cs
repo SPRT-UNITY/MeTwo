@@ -21,26 +21,26 @@ public class SceneLoader : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Popup Order 초기화
-        TempManagers.UI.StackClear();
+        Managers.UI.StackClear();
 
         if (scene.buildIndex == 1) // Game 씬
         {
-            TempManagers.UI.ShowSceneUI<UI_Main>();
-            TempManagers.UI.ShowSceneUI<UI_CloneIcon>();
+            Managers.UI.ShowSceneUI<UI_Main>();
+            Managers.UI.ShowSceneUI<UI_CloneIcon>();
             GameSceneManager.Instance.InitGame();
-            TempManagers.SetStatePlaying();
+            Managers.SetStatePlaying();
 
             // 클리어 UI 관련
             GameSceneManager.Instance.ResetOnClearGameEvent();
-            GameSceneManager.Instance.OnClearGameEvent += (() => TempManagers.UI.ShowPopupUI<UI_Clear>());
-            GameSceneManager.Instance.OnClearGameEvent += TempManagers.SetStatePause;
-            GameSceneManager.Instance.OnClearGameEvent += TempManagers.LV.saveCustomPlayerPrefs;
+            GameSceneManager.Instance.OnClearGameEvent += (() => Managers.UI.ShowPopupUI<UI_Clear>());
+            GameSceneManager.Instance.OnClearGameEvent += Managers.SetStatePause;
+            GameSceneManager.Instance.OnClearGameEvent += Managers.LV.saveCustomPlayerPrefs;
         }
         if (scene.buildIndex == 0) // Title 씬
         {
-            TempManagers.LV.nowEnter = -1;
-            TempManagers.UI.ShowSceneUI<UI_TitleMenu>();
-            TempManagers.SetStateTitle();
+            Managers.LV.nowEnter = -1;
+            Managers.UI.ShowSceneUI<UI_TitleMenu>();
+            Managers.SetStateTitle();
 
             SoundManager.Instance.PlayBGM("Main");
         }

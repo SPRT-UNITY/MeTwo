@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class UI_Interact : UI_Display
 {
-    // TempManagers.UI.ShowDisplayUI<UI_Interact>(messages: new string[] { "키", "내용" }); 으로 열기
-    // TempManagers.UI.CloseDisplayUI(string DisplayName) 으로 닫기
+    // Managers.UI.ShowDisplayUI<UI_Interact>(messages: new string[] { "키", "내용" }); 으로 열기
+    // Managers.UI.CloseDisplayUI(string DisplayName) 으로 닫기
     enum Texts
     {
         KeyText,

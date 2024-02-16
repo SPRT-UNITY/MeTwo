@@ -8,7 +8,7 @@ public class UI_Display : UI_Base
 
     public virtual void Init()
     {
-        TempManagers.UI.SetCanvas(gameObject, false);
+        Managers.UI.SetCanvas(gameObject, false);
     }
 
     public void Initialize(string[] _messages)

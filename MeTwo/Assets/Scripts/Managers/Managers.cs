@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TempManagers : MonoBehaviour
+public class Managers : MonoBehaviour
 {
-    static TempManagers s_instance;
-    static TempManagers Instance { get { Init(); return s_instance; } }
+    static Managers s_instance;
+    static Managers Instance { get { Init(); return s_instance; } }
 
     UIManager _ui;
     public static UIManager UI { get { return Instance._ui; } }
@@ -27,17 +27,17 @@ public class TempManagers : MonoBehaviour
     {
         if (s_instance == null)
         {
-            // @Managers 오브젝트를 찾거나 만들어 TempManagers 컴포넌트를 Add
+            // @Managers 오브젝트를 찾거나 만들어 Managers 컴포넌트를 Add
             GameObject go = GameObject.Find("@Managers");
             if (go == null)
             {
                 go = new GameObject { name = "@Managers" };
-                s_instance = go.AddComponent<TempManagers>();
+                s_instance = go.AddComponent<Managers>();
                 DontDestroyOnLoad(go);
             }
             else
             {
-                s_instance = go.GetComponent<TempManagers>();
+                s_instance = go.GetComponent<Managers>();
             }
 
             // UIManager 컴포넌트 추가 및 참조 설정
