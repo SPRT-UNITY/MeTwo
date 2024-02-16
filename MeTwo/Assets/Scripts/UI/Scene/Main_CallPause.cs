@@ -9,16 +9,16 @@ public class Main_CallPause : MonoBehaviour
         // Escape, P 키를 눌렀을 때 Pause를 열거나 팝업을 닫음
         if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) && !GameSceneManager.Instance.GetIsCleared())
         {
-            if (TempManagers.UI.GetPopStackCount() > 0)
+            if (Managers.UI.GetPopStackCount() > 0)
             {
-                TempManagers.UI.ClosePopupUI();
-                if (TempManagers.UI.GetPopStackCount() == 0)
-                    TempManagers.SetStatePlaying();
+                Managers.UI.ClosePopupUI();
+                if (Managers.UI.GetPopStackCount() == 0)
+                    Managers.SetStatePlaying();
             }
             else
             {
-                TempManagers.UI.ShowPopupUI<UI_Pause>();
-                TempManagers.SetStatePause();
+                Managers.UI.ShowPopupUI<UI_Pause>();
+                Managers.SetStatePause();
             }
         }
     }

@@ -219,19 +219,19 @@ public class PlayerManager : MonoBehaviour
     }
     //public void CallPauseEvent(InputAction.CallbackContext context) // 왠지 로그가 세개씩 뜨긴 하는데 아무렴 어떤가
     //{
-    //    Debug.Log($"CallPauseEvent 작동함, 현재 PopupStack수 : {TempManagers.UI.GetPopStackCount()}");
+    //    Debug.Log($"CallPauseEvent 작동함, 현재 PopupStack수 : {Managers.UI.GetPopStackCount()}");
     //    if (context.phase == InputActionPhase.Started)
     //    {
-    //        if (TempManagers.UI.GetPopStackCount() > 0)
+    //        if (Managers.UI.GetPopStackCount() > 0)
     //        {
-    //            TempManagers.UI.ClosePopupUI();
-    //            if (TempManagers.UI.GetPopStackCount() == 0)
-    //                TempManagers.SetStatePlaying();
+    //            Managers.UI.ClosePopupUI();
+    //            if (Managers.UI.GetPopStackCount() == 0)
+    //                Managers.SetStatePlaying();
     //        }
     //        else
     //        {
-    //            TempManagers.UI.ShowPopupUI<UI_Pause>();
-    //            TempManagers.SetStatePause();
+    //            Managers.UI.ShowPopupUI<UI_Pause>();
+    //            Managers.SetStatePause();
     //        }
     //    }
     //}

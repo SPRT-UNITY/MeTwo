@@ -6,6 +6,6 @@ public class UI_Scene : UI_Base
 {
     public virtual void Init()
     {
-        TempManagers.UI.SetCanvas(gameObject, false);
+        Managers.UI.SetCanvas(gameObject, false);
     }
 }

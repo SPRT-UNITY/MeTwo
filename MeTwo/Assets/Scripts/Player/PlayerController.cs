@@ -211,18 +211,18 @@ public class PlayerController : MonoBehaviour
 
             _latestGameObject = hit.transform.gameObject;
             
-            _uiInteract = TempManagers.UI.ShowDisplayUI<UI_Interact>(messages: new string[] { "F", "상호작용하기" });
+            _uiInteract = Managers.UI.ShowDisplayUI<UI_Interact>(messages: new string[] { "F", "상호작용하기" });
         }
         else
         {
             _latestGameObject = null;
             if (_uiInteract)
             {
-                TempManagers.UI.CloseDisplayUI(_uiInteract.gameObject.name);
+                Managers.UI.CloseDisplayUI(_uiInteract.gameObject.name);
                 // 두개 동시에 상호작용시 생기는 오류 해결용 임시 코드
                 if (_uiInteract)
                 {
-                    TempManagers.UI.CloseDisplayUI(_uiInteract.gameObject.name);
+                    Managers.UI.CloseDisplayUI(_uiInteract.gameObject.name);
                 }
 
                 _uiInteract = null;

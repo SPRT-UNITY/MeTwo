@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 호출 예시 (messages[]의 매개변수, )
-//TempManagers.UI.ShowPopupUI<UI_Alert2Btn>(messages: new string[] { "저장된 모든 정보를 삭제합니다" }, actions: new System.Action[] { () =>
+//Managers.UI.ShowPopupUI<UI_Alert2Btn>(messages: new string[] { "저장된 모든 정보를 삭제합니다" }, actions: new System.Action[] { () =>
 //        {
 //            PlayerPrefs.DeleteAll();
-//            TempManagers.UI.ShowPopupUI<UI_Alert1Btn>(messages: new string[] { "데이터를 삭제하였습니다." });
+//            Managers.UI.ShowPopupUI<UI_Alert1Btn>(messages: new string[] { "데이터를 삭제하였습니다." });
 //        } });
 
 
@@ -51,14 +51,14 @@ public class UI_Alert2Btn : UI_Popup
 
     void OnClickClose()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void OnClickCancel()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
     void OnClickOk()
     {
-        TempManagers.UI.ClosePopupUI();
+        Managers.UI.ClosePopupUI();
     }
 }

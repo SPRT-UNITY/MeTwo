@@ -36,13 +36,13 @@ public class UI_TitleMenu : UI_Scene
     // 스테이지 선택 팝업 표시
     void OnClickGameStart()
     {
-        TempManagers.UI.ShowPopupUI<UI_SelectStage>();
+        Managers.UI.ShowPopupUI<UI_SelectStage>();
     }
 
     // 설정 팝업 표시
     void OnClickGameSettings()
     {
-        TempManagers.UI.ShowPopupUI<UI_SettingsOnTitle>();
+        Managers.UI.ShowPopupUI<UI_SettingsOnTitle>();
     }
 
     // 게임 종료
